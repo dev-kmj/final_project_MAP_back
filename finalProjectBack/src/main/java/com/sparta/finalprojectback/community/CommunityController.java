@@ -41,12 +41,22 @@ public class CommunityController {
     }
 
 
-    // 내가 쓴 게시물만 불러오기
-    @GetMapping("/trip/user/mypage/community")
-    public List<Community> getMyCommunityList() {
-        return communityRepository.findByUsername(username);
-    }
+//    // 내가 쓴 게시물만 불러오기
+//    @GetMapping("/trip/user/mypage/community")
+//    public List<Community> getMyCommunityList() {
+//        return communityRepository.findByUsername(username);
+//    }
+//
+//    // 게시물 수정
+//    @PutMapping("/trip/user/community/{id}")
+//    public HttpStatus updateCommunity(@PathVariable Long id, @AuthenticationPrincipal Member member, @RequestBody CommunityRequestDto requestDto) {
+//
+//    }
 
+    // 게시물 삭제
+
+
+    //== 이전 코드 : 나중에 주석처리 -> 삭제 ==//
 
     // 커뮤니티 게시물 수정
     @PutMapping("/trip/user/community/{index}")
@@ -57,7 +67,7 @@ public class CommunityController {
         return (HttpStatus.OK);
     }
 
-    // 삭제
+    //    // 삭제
     @DeleteMapping("/trip/user/community/{index}")
     public HttpStatus deleteCommunity(@PathVariable int index, @AuthenticationPrincipal Member member) {
         List<Community> communities = communityRepository.findByUsername(member.getUsername());
@@ -65,5 +75,5 @@ public class CommunityController {
         communityService.deleteCommunity(deleteId);
         return (HttpStatus.OK);
     }
-
 }
+
