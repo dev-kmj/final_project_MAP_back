@@ -7,6 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostsRequestDto {
     private final String title;
-    private final String image;
+    private final String imagePath;
+    private final int views;
     private final String category;
+    private final int likes;
+    private final String content;
+    private final boolean isComplete;
+    private final int period;
 }
