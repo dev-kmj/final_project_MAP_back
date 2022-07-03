@@ -10,7 +10,6 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/trip")
 public class MemberController {
 
     private final MemberService memberService;
@@ -24,23 +23,23 @@ public class MemberController {
 
     //로그인
     @PostMapping("/login")
-    public String login(@RequestBody MemberLoginRequestDto requestDto){
+    public String login(@RequestBody MemberLoginRequestDto requestDto) {
         return memberService.login(requestDto);
     }
 
     //TEST CODE
 
     @GetMapping("user/test")
-    public Map userResponseTest(HttpServletRequest request){
+    public Map userResponseTest(HttpServletRequest request) {
         String token = request.getHeader("X-AUTH-TOKEN");
         String userId = jwtTokenProvider.getUserPk(token);
         Map<String, String> result = new HashMap<>();
-        result.put("user ok", userId );
+        result.put("user ok", userId);
         return result;
     }
 
     @GetMapping("admin/test")
-    public Map adminResponseTest(){
+    public Map adminResponseTest() {
         Map<String, String> result = new HashMap<>();
         result.put("result", "admin ok");
         return result;
