@@ -1,12 +1,10 @@
-package com.sparta.finalprojectback.community;
+package com.sparta.finalprojectback.community.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class CommunityRequestDto {
 
     String title;
