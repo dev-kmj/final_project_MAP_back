@@ -1,10 +1,13 @@
 package com.sparta.finalprojectback.community;
 
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
+import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import com.sparta.finalprojectback.member.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,9 +25,12 @@ public class Community extends Timestamped {
     @Column(columnDefinition = "TEXT", nullable = false)    // varchar(255) 제한 없애주기
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    // 댓글리스트 추가코드
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<CommunityComment> communityComments = new ArrayList<>();
 
     // 커뮤니티 게시물 생성에 이용
     public Community(CommunityRequestDto requestDto, Member member) {
@@ -39,5 +45,9 @@ public class Community extends Timestamped {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.member = member;
+    }
+
+    public void addComment(CommunityComment communityComment) {
+        this.communityComments.add(communityComment);
     }
 }

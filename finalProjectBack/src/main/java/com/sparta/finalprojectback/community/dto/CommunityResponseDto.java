@@ -1,10 +1,12 @@
 package com.sparta.finalprojectback.community.dto;
 
+import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Getter

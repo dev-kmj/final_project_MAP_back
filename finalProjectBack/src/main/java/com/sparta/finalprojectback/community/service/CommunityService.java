@@ -27,6 +27,24 @@ public class CommunityService {
     }
 
 
+
+    // 모든 게시물 조회
+    public List<CommunityResponseDto> getCommunityList() {
+        List<Community> communityList = communityRepository.findAllByOrderByCreatedAtDesc();
+        return getCommunityResponseDtos(communityList);
+    }
+    @NotNull
+    private List<CommunityResponseDto> getCommunityResponseDtos(List<Community> communityList) {
+        List<CommunityResponseDto> communityResponseDtoList = new ArrayList<>();
+
+        for (Community community : communityList) {
+            communityResponseDtoList.add(new CommunityResponseDto(community.getId(), community.getTitle(),
+                    community.getContent(), community.getMember().getNickname(), community.getCreatedAt(), community.getModifiedAt()));
+        }
+        return communityResponseDtoList;
+    }
+
+
     // 삭제
     @Transactional(rollbackFor = Exception.class)
     public void deleteCommunity(Long id, Member member) {
@@ -47,24 +65,6 @@ public class CommunityService {
     }
 
 
-    // 모든 게시물 조회
-    public List<CommunityResponseDto> getCommunityList() {
-        List<Community> communityList = communityRepository.findAllByOrderByCreatedAtDesc();
-        return getCommunityResponseDtos(communityList);
-    }
-
-    // 리팩토링
-    @NotNull
-    private List<CommunityResponseDto> getCommunityResponseDtos(List<Community> communityList) {
-        List<CommunityResponseDto> communityResponseDtoList = new ArrayList<>();
-
-        for (Community community : communityList) {
-            communityResponseDtoList.add(new CommunityResponseDto(community.getId(), community.getTitle(),
-                    community.getContent(), community.getMember().getNickname(), community.getCreatedAt(), community.getModifiedAt()));
-        }
-
-        return communityResponseDtoList;
-    }
 
 
     // 상세 조회
@@ -86,7 +86,13 @@ public class CommunityService {
     public List<CommunityResponseDto> getMyCommunityList(Member member) {
 
         List<Community> communityList = communityRepository.findAllByMemberId(member.getId());
-        return getCommunityResponseDtos(communityList);
+        List<CommunityResponseDto> communityResponseDtoList = new ArrayList<>();
+
+        for (Community community : communityList) {
+            communityResponseDtoList.add(new CommunityResponseDto(community.getId(), community.getTitle(),
+                    community.getContent(), community.getMember().getNickname(), community.getCreatedAt(), community.getModifiedAt()));
+        }
+        return communityResponseDtoList;
     }
 
 

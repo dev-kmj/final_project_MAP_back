@@ -1,6 +1,5 @@
 package com.sparta.finalprojectback.community.controller;
 
-import com.sparta.finalprojectback.community.Community;
 import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.repository.CommunityRepository;
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
@@ -10,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -32,8 +29,8 @@ public class CommunityController {
 
     // 수정
     @PutMapping("/user/community/post/{id}")
-    public ResponseEntity<String> updateCommunity(@PathVariable Long id, @RequestBody CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
-        communityService.updateCommunity(id, requestDto, member);
+    public ResponseEntity<String> updateCommunity(@PathVariable Long postId, @RequestBody CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
+        communityService.updateCommunity(postId, requestDto, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
@@ -51,10 +48,11 @@ public class CommunityController {
 
 
     // 게시물 상세 조회
-    @GetMapping("/user/community/post/{id}")
-    public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long id) {
-        return new ResponseEntity<>(communityService.communityDetail(id), HttpStatus.OK);
+    @GetMapping("/user/community/post/{postId}/read")
+    public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long postId) {
+        return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
     }
+
 
     // 삭제
     @DeleteMapping("/user/community/post/{id}")
@@ -62,5 +60,6 @@ public class CommunityController {
         communityService.deleteCommunity(id, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
+
 }
 

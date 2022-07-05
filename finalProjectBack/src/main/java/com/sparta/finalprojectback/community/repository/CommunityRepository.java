@@ -14,8 +14,6 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
 
     List<Community> findByMember(Member member);
 
-//    List<Community> findByIdAndMember(Long id, Member member);
-
     List<Community> deleteCommunityByIdAndMember(Long id, Member member);
 
     List<Community> findAllByMemberId(Long memberId);
