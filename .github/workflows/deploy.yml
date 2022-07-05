@@ -48,8 +48,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: javatest-app
-          environment_name: Javatestapp-env
+          application_name: map-app
+          environment_name: Mapapp-env
           version_label: final-application-prod-label-${{steps.current-time.outputs.formattedTime}}-${{github.sha}}
           region: ap-northeast-2
           deployment_package: deploy/final-application-prod-label-${{steps.current-time.outputs.formattedTime}}-${{github.sha}}.zip
