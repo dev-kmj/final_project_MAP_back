@@ -44,5 +44,4 @@ public class MemberController {
         result.put("result", "admin ok");
         return result;
     }
-
 }
