@@ -41,7 +41,7 @@ public class CommunityCommentController {
     @DeleteMapping("/user/community/post/comment/{commentId}")
     public ResponseEntity<String> deleteCommunityComment(@PathVariable Long commentId, @AuthenticationPrincipal Member member) {
         communityCommentService.deleteCommunityComment(commentId, member);
-        return new ResponseEntity<String>("success", HttpStatus.OK);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
 }
