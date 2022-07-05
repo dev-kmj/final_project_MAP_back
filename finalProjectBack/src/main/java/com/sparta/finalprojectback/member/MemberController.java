@@ -2,10 +2,13 @@ package com.sparta.finalprojectback.member;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -45,4 +48,12 @@ public class MemberController {
         return result;
     }
 
+    @GetMapping("admin/members")
+    public ResponseEntity<List<MemberResponseDto>> findUser(@AuthenticationPrincipal Member member){
+        return memberService.findUser();
+    }
+    @DeleteMapping("admin/member/{memberId}")
+    public ResponseEntity<String> deletePostComment(@AuthenticationPrincipal Member member, @PathVariable Long memberId){
+        return memberService.deleteUser(member, memberId);
+    }
 }

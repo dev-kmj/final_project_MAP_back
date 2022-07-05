@@ -2,9 +2,12 @@ package com.sparta.finalprojectback.post.model;
 
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.member.Timestamped;
+import com.sparta.finalprojectback.postComment.model.PostComment;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //PostsRepository에서 Setter 설정함
 @NoArgsConstructor // 기본생성자를 만듭니다.

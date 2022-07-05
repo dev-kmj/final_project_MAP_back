@@ -1,9 +1,13 @@
 package com.sparta.finalprojectback.community;
 
+import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
+import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import com.sparta.finalprojectback.member.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,23 +25,31 @@ public class Community extends Timestamped {
     @Column(columnDefinition = "TEXT", nullable = false)    // varchar(255) 제한 없애주기
     private String content;
 
-    // 유저아이디 (작성자)
-    @Column(nullable = false)
-    private String username;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
+    // 댓글리스트 추가코드
+    // 게시물이 삭제되면 해당 게시물의 댓글이 다 삭제됨
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    private List<CommunityComment> communityComments = new ArrayList<>();
 
     // 커뮤니티 게시물 생성에 이용
-    public Community(CommunityRequestDto requestDto, String username) {
-        this.username = username;
+    public Community(CommunityRequestDto requestDto, Member member) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.member = member;
     }
 
     // 커뮤니티 게시물 수정에 이용
-    public void updateCommunity(Long id, CommunityRequestDto requestDto) {
+    public void updateCommunity(Long id, CommunityRequestDto requestDto, Member member) {
         this.id = id;
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.member = member;
     }
-}
 
+
+//    public void addComment(CommunityComment communityComment) {
+//        this.communityComments.add(communityComment);
+//    }
+}
