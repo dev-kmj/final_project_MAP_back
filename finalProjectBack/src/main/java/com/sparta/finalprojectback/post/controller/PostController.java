@@ -1,6 +1,7 @@
 package com.sparta.finalprojectback.post.controller;
 
 import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.service.PostService;
@@ -37,15 +38,16 @@ public class PostController {
 
     // 나의 여행 게시물 조회
     @GetMapping("/user/plan/my-posts")
-    public ResponseEntity<List<Post>> readMyPost(@AuthenticationPrincipal Member member){
+    public ResponseEntity<List<PostResponseDto>> readMyPost(@AuthenticationPrincipal Member member){
         return postService.readMyPost(member);
     }
 
-    // 모든 여행 게시물 조
+    // 모든 여행 게시물 조회
     @GetMapping("/plan/posts")
-    public ResponseEntity<List<Post>> readAllPost(){
+    public ResponseEntity<List<PostResponseDto>> readAllPost(){
         return postService.readAllPost();
     }
+
 
 
 }

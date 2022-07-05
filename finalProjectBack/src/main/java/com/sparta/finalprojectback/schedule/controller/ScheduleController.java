@@ -1,6 +1,7 @@
 package com.sparta.finalprojectback.schedule.controller;
 
 import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
+import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
 import com.sparta.finalprojectback.schedule.model.Schedule;
 import com.sparta.finalprojectback.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class ScheduleController {
 
     //일정 조회
     @GetMapping("user/plan/post/{postId}/schedules")
-    ResponseEntity<List<Schedule>> readSchedule(@PathVariable Long postId){
+    ResponseEntity<List<ScheduleResponseDto>> readSchedule(@PathVariable Long postId){
         return scheduleService.readSchedule(postId);
     }
 

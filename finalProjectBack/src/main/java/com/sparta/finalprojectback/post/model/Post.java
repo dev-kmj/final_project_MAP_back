@@ -23,7 +23,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     private String title;
 
     @Column(length = 200)
-    private String imagePath;
+    private String image;
 
     private int views;
 
@@ -39,7 +39,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     private int period;
 
     //FK
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Member member;
 
     public void updatePost(String title, Category category, String content, boolean isComplete) {
@@ -47,5 +47,9 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
         this.category = category;
         this.content = content;
         this.isComplete = isComplete;
+    }
+
+    public void updateImage(String image){
+        this.image = image;
     }
 }

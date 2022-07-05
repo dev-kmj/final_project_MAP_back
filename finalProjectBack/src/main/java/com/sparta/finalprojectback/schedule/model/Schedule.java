@@ -21,7 +21,7 @@ public class Schedule extends Timestamped {
     private Long id;
 
     @Column(length = 200)
-    private String links;
+    private String link;
 
     @Column(length = 100)
     private String address;
@@ -36,7 +36,7 @@ public class Schedule extends Timestamped {
     private String placeName;
 
     //FK
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
 
 }

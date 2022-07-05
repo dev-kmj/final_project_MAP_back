@@ -3,6 +3,7 @@ package com.sparta.finalprojectback.schedule.service;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
 import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
+import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
 import com.sparta.finalprojectback.schedule.model.Schedule;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +31,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .post(post)
                 .placeName(requestDto.getPlaceName())
                 .address(requestDto.getAddress())
-                .links(requestDto.getLink())
+                .link(requestDto.getLink())
                 .date(requestDto.getDate())
                 .x(requestDto.getX())
                 .y(requestDto.getY())
@@ -39,10 +41,22 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public ResponseEntity<List<Schedule>> readSchedule(Long postId) {
+    public ResponseEntity<List<ScheduleResponseDto>> readSchedule(Long postId) {
 
         List<Schedule> scheduleList = scheduleRepository.findAllByPost_Id(postId);
-        return new ResponseEntity<>(scheduleList, HttpStatus.OK);
+        List<ScheduleResponseDto> resultList = new ArrayList<>();
+
+        for (Schedule schedule : scheduleList) {
+            resultList.add(ScheduleResponseDto.builder()
+                    .placeName(schedule.getPlaceName())
+                    .link(schedule.getLink())
+                    .date(schedule.getDate())
+                    .address(schedule.getAddress())
+                    .x(schedule.getX())
+                    .y(schedule.getY())
+                    .build());
+        }
+        return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
 
     @Override
