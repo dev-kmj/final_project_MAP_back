@@ -1,13 +1,10 @@
 package com.sparta.finalprojectback.community.dto;
 
-import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 @Getter
 @Setter
@@ -15,22 +12,22 @@ import java.util.List;
 public class CommunityResponseDto {
 
     // 커뮤니티 아이디
-    private Long id;
+    private Long postId;
     private String title;
     private String content;
 
     // 커뮤니티 게시물 작성자
-    private String writer;
+    private String nickname;
 
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
 
-    public CommunityResponseDto(Long id, String title, String content, String writer, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        this.id = id;
+    public CommunityResponseDto(Long postId, String title, String content, String nickname, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        this.postId = postId;
         this.title = title;
         this.content = content;
-        this.writer = writer;
+        this.nickname = nickname;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }

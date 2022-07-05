@@ -1,6 +1,5 @@
 package com.sparta.finalprojectback.communitycomment.dto;
 
-import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import com.sparta.finalprojectback.member.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,16 +16,15 @@ public class CommunityCommentResponseDto extends Timestamped {
     private String comment;
 
     // 댓글 작성자
-    private String writer;
+    private String nickname;
 
     // 댓글 작성시각
     private LocalDateTime createdAt;
 
-
-    public CommunityCommentResponseDto(Long commentId, String comment, String writer, LocalDateTime createdAt) {
+    public CommunityCommentResponseDto(Long commentId, String comment, String nickname, LocalDateTime createdAt) {
         this.commentId = commentId;
         this.comment = comment;
-        this.writer = writer;
+        this.nickname = nickname;
         this.createdAt = createdAt;
     }
 

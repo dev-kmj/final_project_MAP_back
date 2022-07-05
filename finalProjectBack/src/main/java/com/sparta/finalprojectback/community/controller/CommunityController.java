@@ -1,7 +1,6 @@
 package com.sparta.finalprojectback.community.controller;
 
 import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
-import com.sparta.finalprojectback.community.repository.CommunityRepository;
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.service.CommunityService;
 import com.sparta.finalprojectback.member.Member;
@@ -17,7 +16,6 @@ import java.util.List;
 @RestController
 public class CommunityController {
 
-    private final CommunityRepository communityRepository;
     private final CommunityService communityService;
 
 
@@ -28,7 +26,7 @@ public class CommunityController {
     }
 
     // 수정
-    @PutMapping("/user/community/post/{id}")
+    @PutMapping("/user/community/post/{postId}")
     public ResponseEntity<String> updateCommunity(@PathVariable Long postId, @RequestBody CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
         communityService.updateCommunity(postId, requestDto, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
@@ -48,16 +46,16 @@ public class CommunityController {
 
 
     // 게시물 상세 조회
-    @GetMapping("/user/community/post/{postId}/read")
+    @GetMapping("/user/community/post/{postId}")
     public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long postId) {
         return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
     }
 
 
     // 삭제
-    @DeleteMapping("/user/community/post/{id}")
-    public ResponseEntity<String> deleteCommunity(@PathVariable Long id, @AuthenticationPrincipal Member member) {
-        communityService.deleteCommunity(id, member);
+    @DeleteMapping("/user/community/post/{postId}")
+    public ResponseEntity<String> deleteCommunity(@PathVariable Long postId, @AuthenticationPrincipal Member member) {
+        communityService.deleteCommunity(postId, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 

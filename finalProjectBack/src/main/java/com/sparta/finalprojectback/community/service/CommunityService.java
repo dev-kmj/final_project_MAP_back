@@ -65,8 +65,6 @@ public class CommunityService {
     }
 
 
-
-
     // 상세 조회
     @Transactional
     public CommunityResponseDto communityDetail(Long id) {
@@ -74,10 +72,10 @@ public class CommunityService {
                 () -> new NullPointerException("게시물이 없습니다.")
         );
         CommunityResponseDto responseDto = new CommunityResponseDto();
-        responseDto.setId(community.getId());
+        responseDto.setPostId(community.getId());
         responseDto.setTitle(community.getTitle());
         responseDto.setContent(community.getContent());
-        responseDto.setWriter(community.getMember().getNickname());
+        responseDto.setNickname(community.getMember().getNickname());
         return responseDto;
     }
 
@@ -98,6 +96,8 @@ public class CommunityService {
 
 
     /*>=======================페이징 구현 =======================<*/
+
+
 
 
 }

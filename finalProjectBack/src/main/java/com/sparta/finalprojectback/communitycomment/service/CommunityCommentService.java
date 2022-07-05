@@ -29,22 +29,10 @@ public class CommunityCommentService {
         Community community = communityRepository.findById(communityId).orElseGet(null);
         CommunityComment communityComment = new CommunityComment(requestDto, community, member);
 
-        community.addComment(communityComment);
+//        community.addComment(communityComment);
         return communityCommentRepository.save(communityComment).getId();
     }
 
-
-    // 댓글 조회
-//    public List<CommunityCommentResponseDto> readComments(Long communityId) {
-//        CommunityComment communityComment = (CommunityComment) communityCommentRepository.findAllByCommunity_Id(communityId);
-//
-//        CommunityCommentResponseDto responseDto = new CommunityCommentResponseDto();
-//        responseDto.setComment(communityComment.getComment());
-//        responseDto.setCommentId(communityComment.getId());
-//        responseDto.setWriter(communityComment.getMember().getNickname());
-//        responseDto.setCreatedAt(communityComment.getCreatedAt());
-//        return respo
-//    }
 
      // 조회
     public List<CommunityCommentResponseDto> getCommunityComments(Long communityId) {
@@ -67,7 +55,8 @@ public class CommunityCommentService {
     // 삭제
     @Transactional(rollbackFor = Exception.class)
     public void deleteCommunityComment(Long id, Member member) {
-        CommunityComment communityComment = communityCommentRepository.findById(id)
+
+        communityCommentRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 댓글이 없습니다."));
         communityCommentRepository.deleteByIdAndMember(id, member);
     }

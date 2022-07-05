@@ -29,8 +29,9 @@ public class Community extends Timestamped {
     private Member member;
 
     // 댓글리스트 추가코드
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<CommunityComment> communityComments = new ArrayList<>();
+    // 게시물이 삭제되면 해당 게시물의 댓글이 다 삭제됨
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    private List<CommunityComment> communityComments = new ArrayList<>();
 
     // 커뮤니티 게시물 생성에 이용
     public Community(CommunityRequestDto requestDto, Member member) {
@@ -47,7 +48,8 @@ public class Community extends Timestamped {
         this.member = member;
     }
 
-    public void addComment(CommunityComment communityComment) {
-        this.communityComments.add(communityComment);
-    }
+
+//    public void addComment(CommunityComment communityComment) {
+//        this.communityComments.add(communityComment);
+//    }
 }
