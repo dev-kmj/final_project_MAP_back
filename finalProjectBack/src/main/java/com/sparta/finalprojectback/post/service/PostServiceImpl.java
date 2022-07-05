@@ -7,6 +7,7 @@ import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.repository.PostRepository;
+import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
 import com.sparta.finalprojectback.s3.service.FileService;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class PostServiceImpl implements PostService{
     private final ScheduleRepository scheduleRepository;
     private final FileService fileService;
 
+    private final PostCommentRepository postCommentRepository;
     @Override
     public ResponseEntity<Long> createPost(Member member) {
         Long createdPostId = postRepository.save(Post.builder()
@@ -55,6 +57,7 @@ public class PostServiceImpl implements PostService{
             return new ResponseEntity<>("유저가 생성한 게시물만 삭제할 수 있습니다.", HttpStatus.BAD_REQUEST);
         }
         scheduleRepository.deleteAllByPost_Id(postId);
+        postCommentRepository.deleteAllByPost_Id(postId);
         fileService.deleteImage(postId);
         postRepository.deleteById(postId);
 

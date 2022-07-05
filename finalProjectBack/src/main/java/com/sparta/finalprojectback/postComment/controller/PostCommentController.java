@@ -27,6 +27,7 @@ public class PostCommentController {
         return postCommentService.readMyPostComment(member, postId);
     }
 
+
     @DeleteMapping("/user/plan/post/comment/{commentId}")
     public ResponseEntity<String> deletePostComment(@AuthenticationPrincipal Member member, @PathVariable Long commentId){
         return postCommentService.deletePostComment(member, commentId);
