@@ -3,6 +3,8 @@ package com.sparta.finalprojectback.community.controller;
 import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.service.CommunityService;
+import com.sparta.finalprojectback.communitycomment.repository.CommunityCommentRepository;
+import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
 import com.sparta.finalprojectback.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,7 @@ import java.util.List;
 public class CommunityController {
 
     private final CommunityService communityService;
-
+    private final CommunityCommentService communityCommentService;
 
     // 커뮤니티 게시물 작성
     @PostMapping("/user/community/post")
@@ -55,6 +57,7 @@ public class CommunityController {
     // 삭제
     @DeleteMapping("/user/community/post/{postId}")
     public ResponseEntity<String> deleteCommunity(@PathVariable Long postId, @AuthenticationPrincipal Member member) {
+        communityCommentService.deleteAllCommunityComments(postId);
         communityService.deleteCommunity(postId, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

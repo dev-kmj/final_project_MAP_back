@@ -60,4 +60,10 @@ public class CommunityCommentService {
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 댓글이 없습니다."));
         communityCommentRepository.deleteByIdAndMember(id, member);
     }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteAllCommunityComments(Long id) {
+        communityCommentRepository.deleteAllByCommunity_Id(id);
+    }
 }

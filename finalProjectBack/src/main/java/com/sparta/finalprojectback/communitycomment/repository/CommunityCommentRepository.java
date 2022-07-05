@@ -13,4 +13,6 @@ public interface CommunityCommentRepository extends JpaRepository<CommunityComme
     List<CommunityComment> findAllByCommunity_Id(Long id);
 
     List<CommunityComment> deleteByIdAndMember(Long id, Member member);
+
+    List<CommunityComment> deleteAllByCommunity_Id(Long id);
 }
