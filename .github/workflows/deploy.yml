@@ -48,8 +48,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: final-app
-          environment_name: Finalapp-env
+          application_name: project-app
+          environment_name: Projectapp-env
           version_label: todo-application-prod-label-${{steps.current-time.outputs.formattedTime}}-${{github.sha}}
           region: ap-northeast-2
           deployment_package: deploy/todo-application-prod-label-${{steps.current-time.outputs.formattedTime}}-${{github.sha}}.zip
