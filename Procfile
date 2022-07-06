@@ -1,1 +1,1 @@
-web: java -jar final-application-prod-ebextensions-1.jar
+web: java -jar todo-application-prod-ebextensions-1.jar
