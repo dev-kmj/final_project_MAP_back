@@ -10,6 +10,8 @@ spring:
   jpa:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
-logging:
-  level:
-    root: info
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
