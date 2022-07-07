@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,7 +50,14 @@ public class MemberServiceImpl implements MemberService{
         List<Member> members = memberRepository.findAll();
         List<MemberResponseDto> memberResponseDtoList = new ArrayList<>();
         for (Member member : members){
-            memberResponseDtoList.add(new MemberResponseDto(member.getId(), member.getUsername(), member.getEmail(), member.getNickname(), member.getCreatedAt()));
+            memberResponseDtoList.add(MemberResponseDto.builder()
+                            .id(member.getId())
+                            .username(member.getUsername())
+                            .email(member.getEmail())
+                            .nickname(member.getNickname())
+                            .createdAt(member.getCreatedAt())
+                            .build()
+            );
         }
         return new ResponseEntity<>(memberResponseDtoList, HttpStatus.OK);
     }
@@ -57,5 +65,20 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<String> deleteUser(Member member, Long memberId) {
         memberRepository.deleteById(memberId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<String> findOverlapUsername(String username) {
+        Member member = memberRepository.findByUsername(username).orElseThrow(
+                () -> new IllegalArgumentException("중복되지 않은 아이디입니다.")
+        );
+        return new ResponseEntity<>(member.getUsername(), HttpStatus.OK);
+    }
+    @Override
+    public ResponseEntity<String> findOverlapNickname(String nickname) {
+        Member member = memberRepository.findByNickname(nickname).orElseThrow(
+                () -> new IllegalArgumentException("중복되지 않은 닉네임입니다.")
+        );
+        return new ResponseEntity<>(member.getNickname(), HttpStatus.OK);
     }
 }

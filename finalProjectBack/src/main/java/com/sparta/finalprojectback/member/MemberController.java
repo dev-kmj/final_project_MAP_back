@@ -56,4 +56,12 @@ public class MemberController {
     public ResponseEntity<String> deletePostComment(@AuthenticationPrincipal Member member, @PathVariable Long memberId){
         return memberService.deleteUser(member, memberId);
     }
+    @GetMapping("/overlap-username")
+    public ResponseEntity<String> findOverlapUsername(@RequestParam String username){
+        return memberService.findOverlapUsername(username);
+    }
+    @GetMapping("/overlap-nickname")
+    public ResponseEntity<String> findOverlapNickname(@RequestParam String nickname){
+        return memberService.findOverlapNickname(nickname);
+    }
 }

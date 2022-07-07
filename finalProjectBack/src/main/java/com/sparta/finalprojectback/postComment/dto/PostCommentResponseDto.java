@@ -3,6 +3,7 @@ package com.sparta.finalprojectback.postComment.dto;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.member.Timestamped;
 import com.sparta.finalprojectback.post.model.Post;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class PostCommentResponseDto extends Timestamped {
     private String comment;
     private String member;
     private Long post;
+    @Builder
     public PostCommentResponseDto(LocalDateTime createdAt, LocalDateTime modifiedAt, Long id, String comment,Member member,Post post){
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
