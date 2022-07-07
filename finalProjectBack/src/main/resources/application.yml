@@ -1,21 +1,12 @@
 spring:
   profiles:
+    active: prod
     include:
       - aws
       - credentials
 
-  # H2 Setting Info
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  # Database Setting Info
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:MAP_db
-    username: sa
-    password:
 
-
+server:
+  port:
 
 
