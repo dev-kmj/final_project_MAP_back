@@ -1,8 +1,10 @@
 package com.sparta.finalprojectback.community.repository;
 
-import com.sparta.finalprojectback.community.Community;
+import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
+import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.member.Member;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +20,5 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
     List<Community> findAllByMemberId(Long memberId);
 
     // 페이징
-//    Page<Community> findAllByOrderByCreatedAtDesc();
+    Page<Community>  findAllByOrderByCreatedAtDesc(Pageable pageable);
 }

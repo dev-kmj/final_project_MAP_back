@@ -1,7 +1,6 @@
 package com.sparta.finalprojectback.communitycomment.service;
 
-
-import com.sparta.finalprojectback.community.Community;
+import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.community.repository.CommunityRepository;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestDto;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentResponseDto;

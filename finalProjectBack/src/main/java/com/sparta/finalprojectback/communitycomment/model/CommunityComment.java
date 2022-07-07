@@ -1,10 +1,9 @@
 package com.sparta.finalprojectback.communitycomment.model;
 
-import com.sparta.finalprojectback.community.Community;
+import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestDto;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.member.Timestamped;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CommunityComment extends Timestamped {
 
     @Id
