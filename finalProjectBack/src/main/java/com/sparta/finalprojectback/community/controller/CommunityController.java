@@ -58,10 +58,17 @@ public class CommunityController {
     }
 
     // 게시물 상세 조회
+//    @GetMapping("/user/community/post/{postId}")
+//    public ResponseEntity<Optional<CommunityResponseDto>> getCommunityDetail(@PathVariable Long postId) {
+//        return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
+//    }
+
+    // 게시물 상세 조회
     @GetMapping("/user/community/post/{postId}")
-    public ResponseEntity<Optional<CommunityResponseDto>> getCommunityDetail(@PathVariable Long postId) {
+    public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long postId) {
         return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
     }
+
 
     // 게시물 수정
     @PutMapping("/user/community/post/{postId}")
@@ -77,6 +84,5 @@ public class CommunityController {
         communityService.deleteCommunity(postId, member);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
-
 }
 

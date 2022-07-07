@@ -65,8 +65,7 @@ public class CommunityService {
                 .collect(Collectors.toList());
     }
 
-
-
+    // 상세조회 (기존코드)
 //    @Transactional
 //    public CommunityResponseDto communityDetail(Long id) {
 //        Community community = communityRepository.findById(id).orElseThrow(
@@ -82,13 +81,24 @@ public class CommunityService {
 //        return responseDto;
 //    }
 
+
+    // 상세조회 (1차수정-> Optional로 반환)
+//    @Transactional
+//    public Optional<CommunityResponseDto> communityDetail(Long id) {
+//        communityRepository.findById(id).orElseThrow(
+//                () -> new NullPointerException("게시물이 없습니다.")
+//        );
+//        return communityRepository.findById(id).map(CommunityResponseDto::new);
+//    }
+
     // 특정 게시물 상세조회
     @Transactional
-    public Optional<CommunityResponseDto> communityDetail(Long id) {
+    public CommunityResponseDto communityDetail(Long id) {
         communityRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("게시물이 없습니다.")
         );
-        return communityRepository.findById(id).map(CommunityResponseDto::new);
+        CommunityResponseDto communityResponseDto = communityRepository.findById(id).map(CommunityResponseDto::new).get();
+        return communityResponseDto;
     }
 
 
