@@ -70,14 +70,14 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public ResponseEntity<String> findOverlapUsername(String username) {
         Member member = memberRepository.findByUsername(username).orElseThrow(
-                () -> new IllegalArgumentException("중복된 아이디입니다.")
+                () -> new IllegalArgumentException("중복되지 않은 아이디입니다.")
         );
         return new ResponseEntity<>(member.getUsername(), HttpStatus.OK);
     }
     @Override
     public ResponseEntity<String> findOverlapNickname(String nickname) {
         Member member = memberRepository.findByNickname(nickname).orElseThrow(
-                () -> new IllegalArgumentException("중복된 닉네임입니다.")
+                () -> new IllegalArgumentException("중복되지 않은 닉네임입니다.")
         );
         return new ResponseEntity<>(member.getNickname(), HttpStatus.OK);
     }
