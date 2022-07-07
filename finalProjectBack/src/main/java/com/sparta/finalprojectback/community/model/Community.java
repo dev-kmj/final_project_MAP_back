@@ -25,7 +25,16 @@ public class Community extends Timestamped {
     private Member member;
 
 
+    // 게시물 생성에 이용
     public Community(CommunityRequestDto requestDto, Member member) {
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.member = member;
+    }
+
+    // 게시물 수정에 이용
+    public void updateCommunity(Long id, CommunityRequestDto requestDto, Member member) {
+        this.id = id;
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.member = member;
