@@ -1,4 +1,4 @@
-name: beanstalk
+name: beanstalk 
 
 on:
   push:
