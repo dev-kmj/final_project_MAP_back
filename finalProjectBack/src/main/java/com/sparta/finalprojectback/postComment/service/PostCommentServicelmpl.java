@@ -43,7 +43,15 @@ public class PostCommentServicelmpl implements PostCommentService {
         List<PostComment> postComments = postCommentRepository.findAllByPost_Id(postId);
         List<PostCommentResponseDto> postCommentsList = new ArrayList<>();
         for (PostComment postComment : postComments){
-            postCommentsList.add(new PostCommentResponseDto(postComment.getCreatedAt(), postComment.getModifiedAt(), postComment.getId(), postComment.getComment(), postComment.getMember(), postComment.getPost()));
+            postCommentsList.add(
+                    PostCommentResponseDto.builder()
+                            .createdAt(postComment.getCreatedAt())
+                            .modifiedAt(postComment.getModifiedAt())
+                            .id(postComment.getId())
+                            .comment(postComment.getComment())
+                            .member(postComment.getMember())
+                            .post(postComment.getPost())
+                            .build());
         }
         return new ResponseEntity<>(postCommentsList, HttpStatus.OK);
     }

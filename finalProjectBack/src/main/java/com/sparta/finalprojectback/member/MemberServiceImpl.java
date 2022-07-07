@@ -49,7 +49,14 @@ public class MemberServiceImpl implements MemberService{
         List<Member> members = memberRepository.findAll();
         List<MemberResponseDto> memberResponseDtoList = new ArrayList<>();
         for (Member member : members){
-            memberResponseDtoList.add(new MemberResponseDto(member.getId(), member.getUsername(), member.getEmail(), member.getNickname(), member.getCreatedAt()));
+            memberResponseDtoList.add(MemberResponseDto.builder()
+                            .id(member.getId())
+                            .username(member.getUsername())
+                            .email(member.getEmail())
+                            .nickname(member.getNickname())
+                            .createdAt(member.getCreatedAt())
+                            .build()
+            );
         }
         return new ResponseEntity<>(memberResponseDtoList, HttpStatus.OK);
     }
@@ -57,5 +64,19 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<String> deleteUser(Member member, Long memberId) {
         memberRepository.deleteById(memberId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+    @Override
+    public ResponseEntity<String> findOverlapUsername(MemberJoinRequestDto requestDto) {
+        Member member = memberRepository.findByUsername(requestDto.getUsername()).orElseThrow(
+                () -> new IllegalArgumentException("중복된 아이디입니다.")
+        );
+        return new ResponseEntity<>(member.getUsername(), HttpStatus.OK);
+    }
+    @Override
+    public ResponseEntity<String> findOverlapNickname(MemberJoinRequestDto requestDto) {
+        Member member = memberRepository.findByNickname(requestDto.getNickname()).orElseThrow(
+                () -> new IllegalArgumentException("중복된 닉네임입니다.")
+        );
+        return new ResponseEntity<>(member.getNickname(), HttpStatus.OK);
     }
 }
