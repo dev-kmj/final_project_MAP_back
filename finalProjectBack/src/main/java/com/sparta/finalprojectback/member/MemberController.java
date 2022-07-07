@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class MemberController {
 
     private final MemberService memberService;
