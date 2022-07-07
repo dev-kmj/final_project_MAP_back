@@ -22,7 +22,6 @@ public class CommunityController {
     private final CommunityService communityService;
     private final CommunityCommentService communityCommentService;
 
-
     /**
      * 리팩토링 진행중
      */
@@ -57,11 +56,6 @@ public class CommunityController {
         return communityService.getMyCommunityList(member);
     }
 
-    // 게시물 상세 조회
-//    @GetMapping("/user/community/post/{postId}")
-//    public ResponseEntity<Optional<CommunityResponseDto>> getCommunityDetail(@PathVariable Long postId) {
-//        return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
-//    }
 
     // 게시물 상세 조회
     @GetMapping("/user/community/post/{postId}")

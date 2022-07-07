@@ -47,7 +47,6 @@ public class CommunityService {
                 .collect(Collectors.toList());
     }
 
-
     // 페이징처리 (조회)
     public Page<CommunityResponseDto> getAllCommunities(int page, int size, String sortBy, boolean isAsc) {
         Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
@@ -65,32 +64,6 @@ public class CommunityService {
                 .collect(Collectors.toList());
     }
 
-    // 상세조회 (기존코드)
-//    @Transactional
-//    public CommunityResponseDto communityDetail(Long id) {
-//        Community community = communityRepository.findById(id).orElseThrow(
-//                () -> new NullPointerException("게시물이 없습니다.")
-//        );
-//        CommunityResponseDto responseDto = new CommunityResponseDto();
-//        responseDto.setPostId(community.getId());
-//        responseDto.setTitle(community.getTitle());
-//        responseDto.setContent(community.getContent());
-//        responseDto.setNickname(community.getMember().getNickname());
-//        responseDto.setCreatedAt(community.getCreatedAt());
-//        responseDto.setModifiedAt(community.getModifiedAt());
-//        return responseDto;
-//    }
-
-
-    // 상세조회 (1차수정-> Optional로 반환)
-//    @Transactional
-//    public Optional<CommunityResponseDto> communityDetail(Long id) {
-//        communityRepository.findById(id).orElseThrow(
-//                () -> new NullPointerException("게시물이 없습니다.")
-//        );
-//        return communityRepository.findById(id).map(CommunityResponseDto::new);
-//    }
-
     // 특정 게시물 상세조회
     @Transactional
     public CommunityResponseDto communityDetail(Long id) {
@@ -100,7 +73,6 @@ public class CommunityService {
         CommunityResponseDto communityResponseDto = communityRepository.findById(id).map(CommunityResponseDto::new).get();
         return communityResponseDto;
     }
-
 
     // 수정
     @Transactional(rollbackFor = Exception.class)
@@ -119,5 +91,4 @@ public class CommunityService {
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 게시물이 없습니다."));
         communityRepository.deleteCommunityByIdAndMember(id, member);
     }
-
 }
