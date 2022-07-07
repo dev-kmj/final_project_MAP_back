@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,16 +66,17 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.deleteById(memberId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
+
     @Override
-    public ResponseEntity<String> findOverlapUsername(MemberJoinRequestDto requestDto) {
-        Member member = memberRepository.findByUsername(requestDto.getUsername()).orElseThrow(
+    public ResponseEntity<String> findOverlapUsername(String username) {
+        Member member = memberRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("중복된 아이디입니다.")
         );
         return new ResponseEntity<>(member.getUsername(), HttpStatus.OK);
     }
     @Override
-    public ResponseEntity<String> findOverlapNickname(MemberJoinRequestDto requestDto) {
-        Member member = memberRepository.findByNickname(requestDto.getNickname()).orElseThrow(
+    public ResponseEntity<String> findOverlapNickname(String nickname) {
+        Member member = memberRepository.findByNickname(nickname).orElseThrow(
                 () -> new IllegalArgumentException("중복된 닉네임입니다.")
         );
         return new ResponseEntity<>(member.getNickname(), HttpStatus.OK);

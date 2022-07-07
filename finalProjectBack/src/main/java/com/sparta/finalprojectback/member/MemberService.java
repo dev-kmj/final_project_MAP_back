@@ -10,6 +10,6 @@ public interface MemberService {
     public String login(MemberLoginRequestDto requestDto);
     ResponseEntity<List<MemberResponseDto>> findUser();
     ResponseEntity<String> deleteUser(Member member, Long memberId);
-    ResponseEntity<String> findOverlapUsername(MemberJoinRequestDto requestDto);
-    ResponseEntity<String> findOverlapNickname(MemberJoinRequestDto requestDto);
+    ResponseEntity<String> findOverlapUsername(String username);
+    ResponseEntity<String> findOverlapNickname(String nickname);
 }
