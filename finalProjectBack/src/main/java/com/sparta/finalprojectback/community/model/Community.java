@@ -15,7 +15,7 @@ public class Community extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 500, nullable = false) // 길이 255 -> 500으로 늘려줌
+    @Column(length = 45, nullable = false)
     private String title;
 
     @Column(length = 300, nullable = false)
@@ -23,7 +23,6 @@ public class Community extends Timestamped {
 
     @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Member.class)
     private Member member;
-
 
     // 게시물 생성에 이용
     public Community(CommunityRequestDto requestDto, Member member) {

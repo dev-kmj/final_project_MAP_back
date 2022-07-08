@@ -1,6 +1,5 @@
 package com.sparta.finalprojectback.community.repository;
 
-import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.member.Member;
 import org.springframework.data.domain.Page;
