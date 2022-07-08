@@ -49,6 +49,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         for (Schedule schedule : scheduleList) {
             resultList.add(ScheduleResponseDto.builder()
+                    .id(schedule.getId())
                     .placeName(schedule.getPlaceName())
                     .link(schedule.getLink())
                     .date(schedule.getDate())
