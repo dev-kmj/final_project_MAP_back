@@ -18,5 +18,6 @@ public class ScheduleResponseDto {
     private float x;
     private float y;
     private int date;
+    private Long postId;
 
 }

@@ -56,6 +56,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .x(schedule.getX())
                     .y(schedule.getY())
                     .phone(schedule.getPhone())
+                    .postId(schedule.getPost().getId())
                     .build());
         }
         return new ResponseEntity<>(resultList, HttpStatus.OK);
