@@ -26,10 +26,15 @@ public class CommunityService {
      * 리팩토링 진행중
      */
 
+    /**
+     * 예외처리 진행중
+     */
+
     // 게시물 등록
     @Transactional
     public Long createCommunity(CommunityRequestDto requestDto, Member member) {
         Community community = new Community(requestDto, member);
+
         return communityRepository.save(community).getId();
     }
 
@@ -41,6 +46,12 @@ public class CommunityService {
         // CommunityRepository에서 반환받은건 List<Community>형태
         // .stream().map()을 이용해 ResponseDto로 변환한 후
         // 리스트로 반환
+
+        List<Community> communities = communityRepository.findAllByOrderByCreatedAtDesc();
+        if (communities != null) {
+            new IllegalArgumentException("게시물이 존재하지 않습니다.");
+        }
+
         return communityRepository.findAllByOrderByCreatedAtDesc().stream()
                 .map(CommunityResponseDto::new)
                 .collect(Collectors.toList());
@@ -67,8 +78,9 @@ public class CommunityService {
     @Transactional
     public CommunityResponseDto communityDetail(Long id) {
         communityRepository.findById(id).orElseThrow(
-                () -> new NullPointerException("게시물이 없습니다.")
+                () -> new NullPointerException("해당하는 게시물이 존재하지 않습니다.")
         );
+
         CommunityResponseDto communityResponseDto = communityRepository.findById(id).map(CommunityResponseDto::new).get();
         return communityResponseDto;
     }
@@ -86,7 +98,7 @@ public class CommunityService {
     // 삭제
     @Transactional(rollbackFor = Exception.class)
     public void deleteCommunity(Long id, Member member) {
-        Community community = communityRepository.findById(id)
+       communityRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 게시물이 없습니다."));
         communityRepository.deleteCommunityByIdAndMember(id, member);
     }

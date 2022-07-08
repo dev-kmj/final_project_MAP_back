@@ -13,7 +13,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,7 +33,7 @@ public class CommunityController {
 
     // 전체 조회 (제목 + 내용)
     @GetMapping("/user/community/posts")
-    public List<CommunityResponseDto> getCommunityList(@AuthenticationPrincipal Member member) {
+    public List<CommunityResponseDto> getCommunityList() {
         return communityService.getCommunityList();
     }
 

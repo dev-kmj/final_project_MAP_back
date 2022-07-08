@@ -22,13 +22,19 @@ public class CommunityCommentService {
     private final CommunityCommentRepository communityCommentRepository;
     private final CommunityRepository communityRepository;
 
+
     // 댓글 작성
+    // 예외처리
     @Transactional
     public Long createComment(Long communityId, CommunityCommentRequestDto requestDto, Member member) {
         Community community = communityRepository.findById(communityId).orElseGet(null);
+
+        if (community == null) {
+            throw new NullPointerException("게시물이 존재하지 않습니다.");
+        }
+
         CommunityComment communityComment = new CommunityComment(requestDto, community, member);
 
-//        community.addComment(communityComment);
         return communityCommentRepository.save(communityComment).getId();
     }
 
