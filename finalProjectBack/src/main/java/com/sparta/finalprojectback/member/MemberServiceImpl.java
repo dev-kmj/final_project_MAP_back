@@ -1,15 +1,11 @@
 package com.sparta.finalprojectback.member;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
-import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
-import com.sparta.finalprojectback.postComment.model.PostComment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -51,12 +47,12 @@ public class MemberServiceImpl implements MemberService{
         List<MemberResponseDto> memberResponseDtoList = new ArrayList<>();
         for (Member member : members){
             memberResponseDtoList.add(MemberResponseDto.builder()
-                            .id(member.getId())
-                            .username(member.getUsername())
-                            .email(member.getEmail())
-                            .nickname(member.getNickname())
-                            .createdAt(member.getCreatedAt())
-                            .build()
+                    .id(member.getId())
+                    .username(member.getUsername())
+                    .email(member.getEmail())
+                    .nickname(member.getNickname())
+                    .createdAt(member.getCreatedAt())
+                    .build()
             );
         }
         return new ResponseEntity<>(memberResponseDtoList, HttpStatus.OK);
