@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 
+import java.io.InterruptedIOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +35,8 @@ public class CommunityService {
     // 게시물 등록
     @Transactional
     public Long createCommunity(CommunityRequestDto requestDto, Member member) {
-        Community community = new Community(requestDto, member);
 
+        Community community = new Community(requestDto, member);
         return communityRepository.save(community).getId();
     }
 

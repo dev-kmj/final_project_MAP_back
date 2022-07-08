@@ -27,6 +27,4 @@ public class CommunityCommentResponseDto extends Timestamped {
         this.nickname = nickname;
         this.createdAt = createdAt;
     }
-
-
 }
