@@ -13,12 +13,6 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex){
-//        Map<String, String> errors = new HashMap<>();
-//        ex.getBindingResult().getAllErrors()
-//                .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
-//        return ResponseEntity.badRequest().body(errors);
-//    }
     public String handleValidationExceptions(MethodArgumentNotValidException ex) {
 
         String error;
