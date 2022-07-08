@@ -35,6 +35,8 @@ public class Schedule extends Timestamped {
     @Column(length = 30)
     private String placeName;
 
+    private String phone;
+
     //FK
     @ManyToOne(fetch = FetchType.EAGER)
     private Post post;

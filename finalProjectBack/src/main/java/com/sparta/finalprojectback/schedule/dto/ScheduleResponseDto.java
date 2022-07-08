@@ -14,6 +14,7 @@ public class ScheduleResponseDto {
     private String placeName;
     private String address;
     private String link;
+    private String phone;
     private float x;
     private float y;
     private int date;
