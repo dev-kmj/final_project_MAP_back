@@ -1,7 +1,6 @@
 package com.sparta.finalprojectback.post.service;
 
 import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.MemberRepository;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Post;
@@ -102,8 +101,8 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete) {
-//        List<Post> allPosts = postRepository.findAll();
 
+        // isComplete 이용해서 작성완료된 게시물만 반환
         List<Post> allPosts = postRepository.findPostsByIsComplete(!isComplete);
 
         return getListResponseEntity(allPosts);

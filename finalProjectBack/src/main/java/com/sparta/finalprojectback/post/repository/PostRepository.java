@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findAllByMember_Id(Long postId);
-
     List<Post> findPostsByIsComplete(boolean isComplete);
 
 }
