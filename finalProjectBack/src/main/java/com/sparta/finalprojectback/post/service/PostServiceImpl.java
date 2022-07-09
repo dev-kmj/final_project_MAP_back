@@ -101,8 +101,11 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public ResponseEntity<List<PostResponseDto>> readAllPost() {
-        List<Post> allPosts = postRepository.findAll();
+    public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete) {
+//        List<Post> allPosts = postRepository.findAll();
+
+        List<Post> allPosts = postRepository.findPostsByIsComplete(!isComplete);
+
         return getListResponseEntity(allPosts);
     }
 

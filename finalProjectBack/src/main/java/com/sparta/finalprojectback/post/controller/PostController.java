@@ -44,10 +44,8 @@ public class PostController {
 
     // 모든 여행 게시물 조회
     @GetMapping("/plan/posts")
-    public ResponseEntity<List<PostResponseDto>> readAllPost(){
-        return postService.readAllPost();
+    public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete){
+        return postService.readAllPost(isComplete);
     }
-
-
 
 }

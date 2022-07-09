@@ -12,6 +12,7 @@ public class GlobalExceptionHandler {
         return e.getMessage();
     }
 
+    // validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String handleValidationExceptions(MethodArgumentNotValidException ex) {
 
