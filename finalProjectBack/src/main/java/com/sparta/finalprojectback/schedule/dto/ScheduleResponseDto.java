@@ -11,11 +11,14 @@ import lombok.Setter;
 @Builder
 public class ScheduleResponseDto {
 
+    private Long id;
     private String placeName;
     private String address;
     private String link;
+    private String phone;
     private float x;
     private float y;
     private int date;
+    private Long postId;
 
 }

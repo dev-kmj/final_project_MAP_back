@@ -35,6 +35,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .date(requestDto.getDate())
                 .x(requestDto.getX())
                 .y(requestDto.getY())
+                .phone(requestDto.getPhone())
                 .build()).getId();
 
         return new ResponseEntity<>(scheduleId, HttpStatus.CREATED);
@@ -48,12 +49,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         for (Schedule schedule : scheduleList) {
             resultList.add(ScheduleResponseDto.builder()
+                    .id(schedule.getId())
                     .placeName(schedule.getPlaceName())
                     .link(schedule.getLink())
                     .date(schedule.getDate())
                     .address(schedule.getAddress())
                     .x(schedule.getX())
                     .y(schedule.getY())
+                    .phone(schedule.getPhone())
+                    .postId(schedule.getPost().getId())
                     .build());
         }
         return new ResponseEntity<>(resultList, HttpStatus.OK);

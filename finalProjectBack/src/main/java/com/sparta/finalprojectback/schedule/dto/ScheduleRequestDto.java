@@ -16,5 +16,6 @@ public class ScheduleRequestDto {
     private String address;
     private String link;
     private int date;
+    private String phone;
     private float x, y;
 }
