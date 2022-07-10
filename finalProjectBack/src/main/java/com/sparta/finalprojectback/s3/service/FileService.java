@@ -45,9 +45,11 @@ public class FileService {
                 () -> new IllegalArgumentException("존재하지 않는 게시물 아이디 입니다.")
         );
 
-        if(post.getImage() != "입력 없음"){
-            s3Service.deleteFile(post.getImage());
+        System.out.println(post.getImage());
+        if(post.getImage().equals("입력 없음")){
+            return postId;
         }
+        s3Service.deleteFile(post.getImage());
         return postId;
     }
 
