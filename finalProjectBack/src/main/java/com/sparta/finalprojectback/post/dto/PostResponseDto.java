@@ -17,5 +17,8 @@ public class PostResponseDto {
     private Category category;
     private String nickname;
     private LocalDateTime createdAt;
+    private int period;
+    private String image;
+    private int likes;
 
 }

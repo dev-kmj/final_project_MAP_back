@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,7 +121,10 @@ public class PostServiceImpl implements PostService{
                     post.getContent(),
                     post.getCategory(),
                     post.getMember().getNickname(),
-                    post.getCreatedAt()));
+                    post.getCreatedAt(),
+                    post.getPeriod(),
+                    post.getImage(),
+                    post.getLikes()));
 
         }
         return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
