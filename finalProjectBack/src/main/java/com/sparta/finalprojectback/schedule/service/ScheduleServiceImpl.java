@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         scheduleRepository.deleteById(scheduleId);
 
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<String> deleteAllSchedule(Long postId) {
+        scheduleRepository.deleteAllByPost_Id(postId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 }

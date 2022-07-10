@@ -34,4 +34,9 @@ public class ScheduleController {
         return scheduleService.deleteSchedule(scheduleId);
     }
 
+    @DeleteMapping("user/plan/post/{postId}/schedules")
+    ResponseEntity<String> deleteAllSchedule(@PathVariable Long postId){
+        return scheduleService.deleteAllSchedule(postId);
+    }
+
 }

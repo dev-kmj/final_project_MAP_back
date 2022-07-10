@@ -18,4 +18,6 @@ public interface ScheduleService {
 
     ResponseEntity<String> deleteSchedule(Long scheduleId);
 
+    ResponseEntity<String> deleteAllSchedule(Long postId);
+
 }
