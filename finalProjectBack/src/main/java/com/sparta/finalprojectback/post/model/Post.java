@@ -45,10 +45,10 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     @ManyToOne(fetch = FetchType.EAGER)
     private Member member;
 
-    public void updatePost(String title, Category category, String content, boolean isComplete) {
+    public void updatePost(String title, Category category, int period, boolean isComplete) {
         this.title = title;
         this.category = category;
-        this.content = content;
+        this.period = period;
         this.isComplete = isComplete;
     }
 

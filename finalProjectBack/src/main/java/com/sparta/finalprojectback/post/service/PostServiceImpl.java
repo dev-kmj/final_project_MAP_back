@@ -85,11 +85,13 @@ public class PostServiceImpl implements PostService{
             category = Category.SCENERY;
         }else if(requestDto.getCategory() == "cafe"){ //        CAFE 카페투어
             category = Category.CAFE;
-        }else{                              //        ATTRACTION 관광지
+        }else if(requestDto.getCategory() == "attraction"){//        ATTRACTION 관광지
+            category = Category.ATTRACTION;
+        }else if(requestDto.getCategory() == "date"){ //        DATE 데이트
             category = Category.ATTRACTION;
         }
 
-        targetPost.updatePost(requestDto.getTitle(), category, requestDto.getContent(), true);
+        targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
