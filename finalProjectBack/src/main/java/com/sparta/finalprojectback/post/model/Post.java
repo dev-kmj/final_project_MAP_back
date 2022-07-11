@@ -45,6 +45,14 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     @ManyToOne(fetch = FetchType.EAGER)
     private Member member;
 
+    // 좋아요 매핑
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Likes> likesList;
+
     public void updatePost(String title, Category category, int period, boolean isComplete) {
         this.title = title;
         this.category = category;
@@ -54,5 +62,10 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
 
     public void updateImage(String image){
         this.image = image;
+    }
+
+    // 좋아요 개수 증가/감소
+    public void updateLike(int num) {
+        likes += num;
     }
 }
