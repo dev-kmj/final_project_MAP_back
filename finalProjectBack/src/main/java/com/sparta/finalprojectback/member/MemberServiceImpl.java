@@ -2,6 +2,7 @@ package com.sparta.finalprojectback.member;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,18 +64,22 @@ public class MemberServiceImpl implements MemberService{
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
+    @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapUsername(String username) {
-        Member member = memberRepository.findByUsername(username).orElseThrow(
-                () -> new IllegalArgumentException("중복되지 않은 아이디입니다.")
-        );
-        return new ResponseEntity<>(member.getUsername(), HttpStatus.OK);
+        Member member = memberRepository.findByUsername(username).orElse(new Member());
+        if (username.equals(member.getUsername())) {
+            return new ResponseEntity<>("중복 유저 네임입니다", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+    @SneakyThrows
     @Override
-    public ResponseEntity<String> findOverlapNickname(String nickname) {
-        Member member = memberRepository.findByNickname(nickname).orElseThrow(
-                () -> new IllegalArgumentException("중복되지 않은 닉네임입니다.")
-        );
-        return new ResponseEntity<>(member.getNickname(), HttpStatus.OK);
+    public ResponseEntity<String> findOverlapNickname(String username) {
+        Member member = memberRepository.findByUsername(username).orElse(new Member());
+        if (username.equals(member.getUsername())) {
+            return new ResponseEntity<>("중복된 넥네임입니다", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
