@@ -25,9 +25,14 @@ public class PostCommentServicelmpl implements PostCommentService {
     @Override
     public ResponseEntity<List<PostComment>> createPostComment(Member member, PostCommentRequestDto requestDto) {
         Post post = postRepository.findById(requestDto.getPostId()).orElseThrow(
-                ()-> new IllegalArgumentException("PostId를 찾을수 없음")
+                () -> new IllegalArgumentException("PostId를 찾을수 없음")
         );
-        PostComment postComment = new PostComment(requestDto.getComment(), post, member);
+        PostComment postComment;
+        if (requestDto.getComment() == null) throw new NullPointerException("값을 입력해주세요");
+        else if (requestDto.getComment().length() > 200) throw new RuntimeException("More than 200 words");
+        else {
+            postComment = new PostComment(requestDto.getComment(), post, member);
+        }
         postCommentRepository.save(postComment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
