@@ -1,5 +1,6 @@
 package com.sparta.finalprojectback.schedule.service;
 
+import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
 import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
@@ -7,7 +8,6 @@ import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
 import com.sparta.finalprojectback.schedule.model.Schedule;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +24,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
     private final PostRepository postRepository;
-
     @Override
     public ResponseEntity<Long> createSchedule(ScheduleRequestDto requestDto) {
         Post post = postRepository.findById(requestDto.getPostId()).orElseThrow(
@@ -77,5 +78,39 @@ public class ScheduleServiceImpl implements ScheduleService {
     public ResponseEntity<String> deleteAllSchedule(Long postId) {
         scheduleRepository.deleteAllByPost_Id(postId);
         return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    public List<PostResponseDto> readSearchPost(String local){
+        String[] localName = local.split(",| ");
+        if (Objects.equals(localName[0], "")) {
+            throw new NullPointerException("입력 값이 없습니다.");
+        }
+        System.out.println(local);
+        List<Long> postIdList = new ArrayList<>();
+        for (int i = 0; i < localName.length; i++){
+            List<Schedule> scheduleList = scheduleRepository.findByAddressContaining(localName[i]);
+            for (Schedule schedule : scheduleList){
+                postIdList.add(schedule.getPost().getId());
+            }
+        }
+        List<PostResponseDto> responseDtoList = new ArrayList<>();
+        List<Long> resultList = postIdList.stream().distinct().collect(Collectors.toList());
+        for (Long postId : resultList){
+            Post post = postRepository.findById(postId).orElseThrow(
+                    () -> new IllegalArgumentException("존재하지 않는 게시물 아이디 입니다.")
+            );
+            responseDtoList.add(PostResponseDto.builder()
+                    .id(post.getId())
+                    .title(post.getTitle())
+                    .content(post.getContent())
+                    .category(post.getCategory())
+                    .nickname(post.getMember().getNickname())
+                    .createdAt(post.getCreatedAt())
+                    .period(post.getPeriod())
+                    .image(post.getImage())
+                    .likes(post.getLikes())
+                    .build());
+        }
+        return responseDtoList;
     }
 }

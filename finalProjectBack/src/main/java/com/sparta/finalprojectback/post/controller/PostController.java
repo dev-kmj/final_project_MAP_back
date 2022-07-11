@@ -2,7 +2,6 @@ package com.sparta.finalprojectback.post.controller;
 
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
-import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.service.PostService;
 import lombok.RequiredArgsConstructor;

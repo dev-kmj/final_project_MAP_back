@@ -2,6 +2,7 @@ package com.sparta.finalprojectback.post.dto;
 
 import com.sparta.finalprojectback.post.model.Category;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @AllArgsConstructor
+@Builder
 public class PostResponseDto {
     private Long id;
     private String title;
@@ -20,5 +22,4 @@ public class PostResponseDto {
     private int period;
     private String image;
     private int likes;
-
 }

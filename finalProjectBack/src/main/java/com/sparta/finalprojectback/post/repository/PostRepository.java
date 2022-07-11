@@ -1,6 +1,7 @@
 package com.sparta.finalprojectback.post.repository;
 
 import com.sparta.finalprojectback.post.model.Post;
+import com.sparta.finalprojectback.schedule.model.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

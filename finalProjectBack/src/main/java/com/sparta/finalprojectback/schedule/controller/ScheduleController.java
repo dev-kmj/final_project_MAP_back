@@ -1,8 +1,8 @@
 package com.sparta.finalprojectback.schedule.controller;
 
+import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
 import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
-import com.sparta.finalprojectback.schedule.model.Schedule;
 import com.sparta.finalprojectback.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +37,11 @@ public class ScheduleController {
     @DeleteMapping("user/plan/post/{postId}/schedules")
     ResponseEntity<String> deleteAllSchedule(@PathVariable Long postId){
         return scheduleService.deleteAllSchedule(postId);
+    }
+
+    @GetMapping("user/schedule")
+    List<PostResponseDto> readSearchPost(@RequestParam String local){
+        return scheduleService.readSearchPost(local);
     }
 
 }
