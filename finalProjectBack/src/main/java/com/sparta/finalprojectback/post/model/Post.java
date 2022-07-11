@@ -5,6 +5,7 @@ import com.sparta.finalprojectback.member.Timestamped;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 //PostsRepository에서 Setter 설정함
 @NoArgsConstructor // 기본생성자를 만듭니다.

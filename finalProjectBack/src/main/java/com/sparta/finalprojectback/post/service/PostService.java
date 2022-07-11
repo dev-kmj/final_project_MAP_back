@@ -3,6 +3,7 @@ package com.sparta.finalprojectback.post.service;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
+import com.sparta.finalprojectback.post.model.Post;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -17,8 +18,5 @@ public interface PostService {
     ResponseEntity<List<PostResponseDto>> readMyPost(Member member);
     ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete);
     // 이미지 업로드 api는 나중에 진행
-<<<<<<< HEAD
-    Post getPostById(Long opstId);
-=======
->>>>>>> post_search
+    Post getPostById(Long postId);
 }
