@@ -8,4 +8,5 @@ import java.util.List;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findAllByPost_Id(Long postId);
     void deleteAllByPost_Id(Long postId);
+    List<Schedule> findByAddressContaining(String local);
 }

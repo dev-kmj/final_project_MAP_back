@@ -1,7 +1,8 @@
 package com.sparta.finalprojectback.community.model;
 
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
-import com.sparta.finalprojectback.member.*;
+import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.Timestamped;
 import lombok.*;
 
 import javax.persistence.*;

@@ -75,9 +75,9 @@ public class MemberServiceImpl implements MemberService{
     }
     @SneakyThrows
     @Override
-    public ResponseEntity<String> findOverlapNickname(String username) {
-        Member member = memberRepository.findByUsername(username).orElse(new Member());
-        if (username.equals(member.getUsername())) {
+    public ResponseEntity<String> findOverlapNickname(String nickname) {
+        Member member = memberRepository.findByUsername(nickname).orElse(new Member());
+        if (nickname.equals(member.getNickname())) {
             return new ResponseEntity<>("중복된 닉네임입니다", HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.OK);
