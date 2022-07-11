@@ -48,6 +48,11 @@ public class MemberController {
         return result;
     }
 
+    @GetMapping("user")
+    public MemberResponseDto myInfo(@AuthenticationPrincipal Member member){
+        return memberService.myInfo(member);
+    }
+
     @GetMapping("admin/members")
     public ResponseEntity<List<MemberResponseDto>> findUser(@AuthenticationPrincipal Member member){
         return memberService.findUser();

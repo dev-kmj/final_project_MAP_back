@@ -42,6 +42,19 @@ public class MemberServiceImpl implements MemberService{
         }
         return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
     }
+
+    @Override
+    public MemberResponseDto myInfo(Member member) {
+        return MemberResponseDto.builder()
+                .id(member.getId())
+                .username(member.getUsername())
+                .email(member.getEmail())
+                .nickname(member.getNickname())
+                .createdAt(member.getCreatedAt())
+                .image(member.getImage())
+                .build();
+    }
+
     @Override
     public ResponseEntity<List<MemberResponseDto>> findUser() {
         List<Member> members = memberRepository.findAll();

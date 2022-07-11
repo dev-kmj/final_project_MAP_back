@@ -35,6 +35,8 @@ public class Member extends Timestamped implements UserDetails {
     @Column(length = 100, nullable = false, unique = true)
     private String email;
 
+    private String image;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();

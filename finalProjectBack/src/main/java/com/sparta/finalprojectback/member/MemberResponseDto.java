@@ -14,5 +14,6 @@ public class MemberResponseDto{
     private String username;
     private String email;
     private String nickname;
+    private String image;
     private LocalDateTime createdAt;
 }
