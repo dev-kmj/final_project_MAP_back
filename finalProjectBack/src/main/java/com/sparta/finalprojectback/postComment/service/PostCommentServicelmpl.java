@@ -1,12 +1,12 @@
-package com.sparta.finalprojectback.schedule.postComment.service;
+package com.sparta.finalprojectback.postComment.service;
 
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
-import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentRequestDto;
-import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentResponseDto;
-import com.sparta.finalprojectback.schedule.postComment.model.PostComment;
-import com.sparta.finalprojectback.schedule.postComment.repository.PostCommentRepository;
+import com.sparta.finalprojectback.postComment.model.PostComment;
+import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
+import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
+import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class PostCommentServicelmpl implements PostCommentService {
             postComment = new PostComment(requestDto.getComment(), post, member);
         }
         postCommentRepository.save(postComment);
-        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
+        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.CREATED));
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.repository.PostRepository;
-import com.sparta.finalprojectback.schedule.postComment.repository.PostCommentRepository;
+import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
 import com.sparta.finalprojectback.s3.service.FileService;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
@@ -94,7 +94,7 @@ public class PostServiceImpl implements PostService{
         }
 
         targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
-        return new ResponseEntity<>(ResponseMessage.CREATED_POST, HttpStatus.valueOf(StatusCode.OK));
+        return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
