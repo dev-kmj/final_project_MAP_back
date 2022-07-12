@@ -4,6 +4,8 @@ import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestD
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentResponseDto;
 import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
 import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.statuscode.ResponseMessage;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +28,14 @@ public class CommunityCommentController {
                                                        @AuthenticationPrincipal Member member) {
 
 
-        return new ResponseEntity<>(communityCommentService.createComment(postId, requestDto, member), HttpStatus.OK);
+        return new ResponseEntity<>(communityCommentService.createComment(postId, requestDto, member), HttpStatus.valueOf(StatusCode.OK));
     }
 
 
     // 댓글 조회
     @GetMapping("/user/community/post/{postId}/comment")
     public ResponseEntity<List<CommunityCommentResponseDto>> getCommunityCommentList(@PathVariable Long postId) {
-        return new ResponseEntity<>(communityCommentService.getCommunityComments(postId), HttpStatus.OK);
+        return new ResponseEntity<>(communityCommentService.getCommunityComments(postId), HttpStatus.valueOf(StatusCode.OK));
     }
 
 
@@ -41,7 +43,7 @@ public class CommunityCommentController {
     @DeleteMapping("/user/community/post/comment/{commentId}")
     public ResponseEntity<String> deleteCommunityComment(@PathVariable Long commentId, @AuthenticationPrincipal Member member) {
         communityCommentService.deleteCommunityComment(commentId, member);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_POST_COMMENT, HttpStatus.valueOf(StatusCode.OK));
     }
 
 }

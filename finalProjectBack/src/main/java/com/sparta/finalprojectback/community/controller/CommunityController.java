@@ -5,6 +5,8 @@ import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.service.CommunityService;
 import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
 import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.statuscode.ResponseMessage;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -61,7 +63,7 @@ public class CommunityController {
     // 게시물 상세 조회
     @GetMapping("/user/community/post/{postId}")
     public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long postId) {
-        return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.OK);
+        return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.valueOf(StatusCode.OK));
     }
 
 
@@ -69,7 +71,7 @@ public class CommunityController {
     @PutMapping("/user/community/post/{postId}")
     public ResponseEntity<String> updateCommunity(@PathVariable Long postId, @RequestBody CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
         communityService.updateCommunity(postId, requestDto, member);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
     // 게시물 삭제
@@ -77,7 +79,7 @@ public class CommunityController {
     public ResponseEntity<String> deleteCommunity(@PathVariable Long postId, @AuthenticationPrincipal Member member) {
         communityCommentService.deleteAllCommunityComments(postId);
         communityService.deleteCommunity(postId, member);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 }
 
