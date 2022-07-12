@@ -1,4 +1,4 @@
-package com.sparta.finalprojectback.postComment.dto;
+package com.sparta.finalprojectback.schedule.postComment.dto;
 
 import lombok.Getter;
 

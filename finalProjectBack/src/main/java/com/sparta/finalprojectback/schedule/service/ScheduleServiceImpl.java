@@ -7,6 +7,8 @@ import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
 import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
 import com.sparta.finalprojectback.schedule.model.Schedule;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
+import com.sparta.finalprojectback.statuscode.ResponseMessage;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +42,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .phone(requestDto.getPhone())
                 .build()).getId();
 
-        return new ResponseEntity<>(scheduleId, HttpStatus.CREATED);
+        return new ResponseEntity<>(scheduleId, HttpStatus.valueOf(StatusCode.CREATED));
     }
 
     @Override
@@ -62,22 +64,20 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .postId(schedule.getPost().getId())
                     .build());
         }
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
+        return new ResponseEntity<>(resultList, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
     public ResponseEntity<String> deleteSchedule(Long scheduleId) {
-
         scheduleRepository.deleteById(scheduleId);
-
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
     @Transactional
     public ResponseEntity<String> deleteAllSchedule(Long postId) {
         scheduleRepository.deleteAllByPost_Id(postId);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_ALL_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
     public List<PostResponseDto> readSearchPost(String local){
@@ -106,6 +106,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .category(post.getCategory())
                     .nickname(post.getMember().getNickname())
                     .createdAt(post.getCreatedAt())
+                    .period(post.getPeriod())
                     .period(post.getPeriod())
                     .image(post.getImage())
                     .likes(post.getLikes())

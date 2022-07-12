@@ -1,9 +1,9 @@
-package com.sparta.finalprojectback.postComment.service;
+package com.sparta.finalprojectback.schedule.postComment.service;
 
 import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
-import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
-import com.sparta.finalprojectback.postComment.model.PostComment;
+import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentRequestDto;
+import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentResponseDto;
+import com.sparta.finalprojectback.schedule.postComment.model.PostComment;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 

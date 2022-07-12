@@ -1,6 +1,8 @@
 package com.sparta.finalprojectback.member;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
+import com.sparta.finalprojectback.statuscode.ResponseMessage;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
@@ -69,12 +71,12 @@ public class MemberServiceImpl implements MemberService{
                     .build()
             );
         }
-        return new ResponseEntity<>(memberResponseDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(memberResponseDtoList, HttpStatus.valueOf(StatusCode.OK));
     }
     @Override
     public ResponseEntity<String> deleteUser(Member member, Long memberId) {
         memberRepository.deleteById(memberId);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @SneakyThrows
@@ -82,17 +84,17 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<String> findOverlapUsername(String username) {
         Member member = memberRepository.findByUsername(username).orElse(new Member());
         if (username.equals(member.getUsername())) {
-            return new ResponseEntity<>("중복 유저 네임입니다", HttpStatus.OK);
+            return new ResponseEntity<>(ResponseMessage.READ_FIND_USER, HttpStatus.valueOf(StatusCode.OK));
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
     }
     @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapNickname(String nickname) {
         Member member = memberRepository.findByUsername(nickname).orElse(new Member());
         if (nickname.equals(member.getNickname())) {
-            return new ResponseEntity<>("중복된 닉네임입니다", HttpStatus.OK);
+            return new ResponseEntity<>(ResponseMessage.READ_FIND_USER, HttpStatus.valueOf(StatusCode.OK));
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
     }
 }

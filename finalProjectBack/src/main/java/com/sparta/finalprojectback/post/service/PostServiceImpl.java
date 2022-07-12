@@ -6,20 +6,20 @@ import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.repository.PostRepository;
-import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
+import com.sparta.finalprojectback.schedule.postComment.repository.PostCommentRepository;
 import com.sparta.finalprojectback.s3.service.FileService;
 import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
+import com.sparta.finalprojectback.statuscode.ResponseMessage;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class PostServiceImpl implements PostService{
                 .member(member)
                 .build()).getId();
 
-        return new ResponseEntity<>(createdPostId, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdPostId, HttpStatus.valueOf(StatusCode.CREATED));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PostServiceImpl implements PostService{
                 () -> new IllegalArgumentException("존재하지 않는 게시물 아이디 입니다.")
         );
         if(post.getMember().getId() != member.getId()){
-            return new ResponseEntity<>("유저가 생성한 게시물만 삭제할 수 있습니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("유저가 생성한 게시물만 삭제할 수 있습니다.", HttpStatus.valueOf(StatusCode.BAD_REQUEST));
         }
         scheduleRepository.deleteAllByPost_Id(postId);
         postCommentRepository.deleteAllByPost_Id(postId);
@@ -63,7 +63,7 @@ public class PostServiceImpl implements PostService{
         postRepository.deleteById(postId);
 
 
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
@@ -75,7 +75,7 @@ public class PostServiceImpl implements PostService{
         );
 
         if(targetPost.getMember().getId() != member.getId()){
-            return new ResponseEntity<>("유저가 생성한 게시물만 수정할 수 있습니다.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("유저가 생성한 게시물만 수정할 수 있습니다.", HttpStatus.valueOf(StatusCode.BAD_REQUEST));
         }
 
         Category category = null;
@@ -94,7 +94,7 @@ public class PostServiceImpl implements PostService{
         }
 
         targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(ResponseMessage.CREATED_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
@@ -128,7 +128,7 @@ public class PostServiceImpl implements PostService{
                     post.getLikes()));
 
         }
-        return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(responseDtoList, HttpStatus.valueOf(StatusCode.OK));
     }
 
     @Override
@@ -137,5 +137,4 @@ public class PostServiceImpl implements PostService{
         return postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 게시물이 없습니다."));
     }
-
 }

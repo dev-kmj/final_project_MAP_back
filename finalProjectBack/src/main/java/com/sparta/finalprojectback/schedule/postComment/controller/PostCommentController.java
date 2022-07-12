@@ -1,10 +1,10 @@
-package com.sparta.finalprojectback.postComment.controller;
+package com.sparta.finalprojectback.schedule.postComment.controller;
 
 import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
-import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
-import com.sparta.finalprojectback.postComment.model.PostComment;
-import com.sparta.finalprojectback.postComment.service.PostCommentService;
+import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentRequestDto;
+import com.sparta.finalprojectback.schedule.postComment.dto.PostCommentResponseDto;
+import com.sparta.finalprojectback.schedule.postComment.model.PostComment;
+import com.sparta.finalprojectback.schedule.postComment.service.PostCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

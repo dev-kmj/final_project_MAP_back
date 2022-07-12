@@ -1,4 +1,4 @@
-package com.sparta.finalprojectback.postComment.dto;
+package com.sparta.finalprojectback.schedule.postComment.dto;
 
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.member.Timestamped;

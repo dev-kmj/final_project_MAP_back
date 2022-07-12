@@ -1,6 +1,6 @@
-package com.sparta.finalprojectback.postComment.repository;
+package com.sparta.finalprojectback.schedule.postComment.repository;
 
-import com.sparta.finalprojectback.postComment.model.PostComment;
+import com.sparta.finalprojectback.schedule.postComment.model.PostComment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
