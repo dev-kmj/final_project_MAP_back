@@ -137,4 +137,24 @@ public class PostServiceImpl implements PostService{
         return postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 게시물이 없습니다."));
     }
+
+    @Override
+    public ResponseEntity<PostResponseDto> readPostInfo(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () ->  new IllegalArgumentException("해당하는 게시물이 없습니다.")
+        );
+
+        return new ResponseEntity<>(
+                new PostResponseDto(post.getId(),
+                        post.getTitle(),
+                        post.getContent(),
+                        post.getCategory(),
+                        post.getMember().getNickname(),
+                        post.getCreatedAt(),
+                        post.getPeriod(),
+                        post.getImage(),
+                        post.getLikes()),
+                HttpStatus.valueOf(StatusCode.OK)
+        );
+    }
 }

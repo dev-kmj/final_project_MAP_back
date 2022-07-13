@@ -19,4 +19,7 @@ public interface PostService {
     ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete);
     // 이미지 업로드 api는 나중에 진행
     Post getPostById(Long postId);
+
+    ResponseEntity<PostResponseDto> readPostInfo(Long postId);
+
 }
