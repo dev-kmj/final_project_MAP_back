@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -13,13 +15,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class PostResponseDto {
+    
     private Long id;
+
     private String title;
+
     private String content;
+
     private Category category;
+
     private String nickname;
+
+    @CreatedDate
     private LocalDateTime createdAt;
+
     private int period;
+
     private String image;
+
     private int likes;
 }

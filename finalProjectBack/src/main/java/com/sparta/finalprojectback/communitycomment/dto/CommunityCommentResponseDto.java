@@ -4,6 +4,8 @@ import com.sparta.finalprojectback.member.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +21,7 @@ public class CommunityCommentResponseDto extends Timestamped {
     private String nickname;
 
     // 댓글 작성시각
+    @CreatedDate
     private LocalDateTime createdAt;
 
     public CommunityCommentResponseDto(Long commentId, String comment, String nickname, LocalDateTime createdAt) {
