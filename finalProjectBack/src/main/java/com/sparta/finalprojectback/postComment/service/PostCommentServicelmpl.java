@@ -25,7 +25,7 @@ public class PostCommentServicelmpl implements PostCommentService {
     private final PostRepository postRepository;
 
     @Override
-    public ResponseEntity<List<PostComment>> createPostComment(Member member, PostCommentRequestDto requestDto) {
+    public ResponseEntity<Long> createPostComment(Member member, PostCommentRequestDto requestDto, Long postId) {
         Post post = postRepository.findById(requestDto.getPostId()).orElseThrow(
                 () -> new IllegalArgumentException("PostId를 찾을수 없음")
         );
@@ -36,7 +36,7 @@ public class PostCommentServicelmpl implements PostCommentService {
             postComment = new PostComment(requestDto.getComment(), post, member);
         }
         postCommentRepository.save(postComment);
-        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.CREATED));
+        return new ResponseEntity<>(postComment.getId(),HttpStatus.valueOf(StatusCode.CREATED));
     }
 
     @Override

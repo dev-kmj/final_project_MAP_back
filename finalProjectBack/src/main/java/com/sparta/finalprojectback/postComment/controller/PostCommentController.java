@@ -3,7 +3,6 @@ package com.sparta.finalprojectback.postComment.controller;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
 import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
-import com.sparta.finalprojectback.postComment.model.PostComment;
 import com.sparta.finalprojectback.postComment.service.PostCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,9 @@ import java.util.List;
 public class PostCommentController {
     private final PostCommentService postCommentService;
 
-    @PostMapping("/user/plan/post/comment")
-    public ResponseEntity<List<PostComment>> createPostComment(@AuthenticationPrincipal Member member, @RequestBody PostCommentRequestDto requestDto){
-        return postCommentService.createPostComment(member, requestDto);
+    @PostMapping("/user/plan/post/{postId}/comment")
+    public ResponseEntity<Long> createPostComment(@AuthenticationPrincipal Member member, @PathVariable Long postId, @RequestBody PostCommentRequestDto requestDto){
+        return postCommentService.createPostComment(member, requestDto, postId);
     }
 
     @GetMapping("/user/plan/post/{postId}/comment")
