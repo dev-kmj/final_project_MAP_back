@@ -4,9 +4,11 @@ import com.sparta.finalprojectback.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,5 +70,9 @@ public class MemberController {
     @GetMapping("/overlap-nickname")
     public ResponseEntity<String> findOverlapNickname(@RequestParam String nickname){
         return memberService.findOverlapNickname(nickname);
+    }
+    @PutMapping("user/modify")
+    public ResponseEntity<String> modifyUser(@AuthenticationPrincipal Member member, @RequestBody MemberUpdateRequestDto requestDto){
+        return memberService.modifyUser(member, requestDto);
     }
 }

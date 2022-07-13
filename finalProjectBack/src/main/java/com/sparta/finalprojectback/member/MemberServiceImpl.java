@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,7 +80,6 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.deleteById(memberId);
         return new ResponseEntity<>(ResponseMessage.DELETE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
-
     @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapUsername(String username) {
@@ -96,5 +97,15 @@ public class MemberServiceImpl implements MemberService{
             return new ResponseEntity<>(ResponseMessage.READ_FIND_USER, HttpStatus.valueOf(StatusCode.OK));
         }
         return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
+    }
+    @SneakyThrows
+    @Override
+    @Transactional
+    public ResponseEntity<String> modifyUser(Member member, MemberUpdateRequestDto requestDto){
+        Member memberModify = memberRepository.findById(member.getId()).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
+        );
+        memberModify.updateUser(requestDto);
+        return new ResponseEntity<>(ResponseMessage.UPDATE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
 }

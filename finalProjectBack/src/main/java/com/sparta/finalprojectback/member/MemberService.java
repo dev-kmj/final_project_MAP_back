@@ -13,4 +13,5 @@ public interface MemberService {
     ResponseEntity<String> deleteUser(Member member, Long memberId);
     ResponseEntity<String> findOverlapUsername(String username);
     ResponseEntity<String> findOverlapNickname(String nickname);
+    ResponseEntity<String> modifyUser(Member member, MemberUpdateRequestDto requestDto);
 }
