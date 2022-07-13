@@ -1,10 +1,10 @@
 package com.sparta.finalprojectback.postComment.service;
 
+import com.sparta.finalprojectback.postComment.model.PostComment;
+import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
-import com.sparta.finalprojectback.postComment.model.PostComment;
-import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
 import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
 import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
@@ -26,7 +26,7 @@ public class PostCommentServicelmpl implements PostCommentService {
 
     @Override
     public ResponseEntity<Long> createPostComment(Member member, PostCommentRequestDto requestDto, Long postId) {
-        Post post = postRepository.findById(requestDto.getPostId()).orElseThrow(
+        Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("PostId를 찾을수 없음")
         );
         PostComment postComment;
