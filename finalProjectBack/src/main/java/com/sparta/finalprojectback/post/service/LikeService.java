@@ -36,12 +36,21 @@ public class LikeService {
         return postId;
     }
 
+    // 좋아요 생성 (Likes DB에 넣어줌)
     public Likes createLike(Member member, Long postId) {
 
         Post post = postService.getPostById(postId);
         Likes like = new Likes(member, post);
 
         return likeRepository.save(like);
+    }
+
+
+    // 내가 좋아요 한 게시물 불러오기
+    public List<LikeResponseDto> getMyLikes(Member member) {
+        return likeRepository.findAllByMemberId(member.getId()).stream()
+                .map(LikeResponseDto::new)
+                .collect(Collectors.toList());
     }
 
 }
