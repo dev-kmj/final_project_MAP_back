@@ -1,10 +1,14 @@
 package com.sparta.finalprojectback.post.model;
 
-import com.sparta.finalprojectback.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.sparta.finalprojectback.member.Member;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
 import javax.persistence.*;
 
 @Entity
@@ -23,17 +27,10 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
-    @Column(nullable = false)
-    private boolean isLike;
 
     public Likes(Member member, Post post) {
         this.member = member;
         this.post = post;
-        this.isLike = false;
     }
 
-    public Boolean toggle() {
-        isLike = !isLike;
-        return isLike;
-    }
 }
