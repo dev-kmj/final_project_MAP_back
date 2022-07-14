@@ -7,7 +7,6 @@ import com.sparta.finalprojectback.post.model.Post;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface PostService {
@@ -19,7 +18,6 @@ public interface PostService {
     ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete);
     // 이미지 업로드 api는 나중에 진행
     Post getPostById(Long postId);
-
     ResponseEntity<PostResponseDto> readPostInfo(Long postId);
-
+    ResponseEntity<PostResponseDto> countingView(Long postId);
 }

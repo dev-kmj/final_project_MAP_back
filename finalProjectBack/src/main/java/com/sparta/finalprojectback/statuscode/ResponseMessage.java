@@ -14,6 +14,7 @@ public class ResponseMessage {
     public static final String DELETE_POST = "게시물 삭제 성공";
     public static final String CREATED_POST = "게시물 생성 성공";
     public static final String UPDATE_POST = "게시물 수정 성공";
+    public static final String UPDATE_VIEW = "게시물 조회수 증가 성공";
     public static final String DELETE_POST_COMMENT = "게시물 댓글 삭제 성공";
     public static final String DELETE_SCHEDULE = "스케줄 삭제 성공";
     public static final String DELETE_ALL_SCHEDULE = "모든 게시물 삭제 성공";

@@ -41,6 +41,7 @@ public class PostServiceImpl implements PostService{
                 .isComplete(false)
                 .period(0)
                 .member(member)
+                .views(0)
                 .build()).getId();
 
         return new ResponseEntity<>(createdPostId, HttpStatus.valueOf(StatusCode.CREATED));
@@ -125,7 +126,8 @@ public class PostServiceImpl implements PostService{
                     post.getCreatedAt(),
                     post.getPeriod(),
                     post.getImage(),
-                    post.getLikes()));
+                    post.getLikes(),
+                    post.getViews()));
 
         }
         return new ResponseEntity<>(responseDtoList, HttpStatus.valueOf(StatusCode.OK));
@@ -143,7 +145,6 @@ public class PostServiceImpl implements PostService{
         Post post = postRepository.findById(postId).orElseThrow(
                 () ->  new IllegalArgumentException("해당하는 게시물이 없습니다.")
         );
-
         return new ResponseEntity<>(
                 new PostResponseDto(post.getId(),
                         post.getTitle(),
@@ -153,8 +154,18 @@ public class PostServiceImpl implements PostService{
                         post.getCreatedAt(),
                         post.getPeriod(),
                         post.getImage(),
-                        post.getLikes()),
+                        post.getLikes(),
+                        post.getViews()),
                 HttpStatus.valueOf(StatusCode.OK)
         );
+    }
+    @Override
+    @Transactional
+    public ResponseEntity<PostResponseDto> countingView(Long postId){
+        Post post = postRepository.findById(postId).orElseThrow(
+                () ->  new IllegalArgumentException("해당하는 게시물이 없습니다.")
+        );
+        post.countingView(1);
+        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
     }
 }
