@@ -52,6 +52,8 @@ public class PostController {
     public ResponseEntity<PostResponseDto> readPostInfo(@PathVariable Long postId){
         return postService.readPostInfo(postId);
     }
-
-
+    @PutMapping("/user/plan/post/{postId}/view")
+    public ResponseEntity<PostResponseDto> countingView(@PathVariable Long postId){
+        return postService.countingView(postId);
+    }
 }

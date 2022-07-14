@@ -34,4 +34,6 @@ public class PostResponseDto {
     private String image;
 
     private int likes;
+
+    private int views;
 }

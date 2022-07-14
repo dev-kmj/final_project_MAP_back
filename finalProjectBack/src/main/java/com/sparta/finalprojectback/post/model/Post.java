@@ -66,4 +66,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     public void updateLike(int num) {
         likes += num;
     }
+    public void countingView(int num1) {
+        views += num1;
+    }
 }
