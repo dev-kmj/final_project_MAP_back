@@ -4,6 +4,7 @@ spring:
     include:
       - aws
       - credentials
+      - API-KEY
 
 
 
