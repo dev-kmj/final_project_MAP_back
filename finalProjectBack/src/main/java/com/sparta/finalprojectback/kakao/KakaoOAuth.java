@@ -17,6 +17,9 @@ public class KakaoOAuth {
     @Value("${kakao_apikey}")
     private String kakao_apikey;
 
+    @Value("${redirect_url}")
+    private String redirect_url;
+
     public KakaoUserInfo getUserInfo(String authorizedCode) {
 
         // 1. 인가코드 -> 액세스 토큰
@@ -38,7 +41,7 @@ public class KakaoOAuth {
         params.add("grant_type", "authorization_code");
 //        params.add("client_id", "1d59051c119b29f730158f41bc9c5153");
         params.add("client_id", kakao_apikey);
-        params.add("redirect_uri", "http://springapp-env.eba-uvimdpb4.ap-northeast-2.elasticbeanstalk.com/auth/kakao/callback");
+        params.add("redirect_uri", redirect_url);
         params.add("code", authorizedCode);
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기

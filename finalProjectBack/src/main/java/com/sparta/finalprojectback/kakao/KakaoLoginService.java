@@ -24,7 +24,7 @@ public class KakaoLoginService {
         // 카카오 OAuth2 를 통해 카카오 사용자 정보 조회
         KakaoUserInfo userInfo = kakaoOAuth.getUserInfo(authorizedCode);
         String kakaoId = Long.toString(userInfo.getId());   // kakaoId를 String을 변환시키기
-        String email = userInfo.getEmail();
+        String email = "kakao";
         Long id;
 
 
