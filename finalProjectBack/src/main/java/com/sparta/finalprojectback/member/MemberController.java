@@ -71,6 +71,10 @@ public class MemberController {
     public ResponseEntity<String> findOverlapNickname(@RequestParam String nickname){
         return memberService.findOverlapNickname(nickname);
     }
+    @GetMapping("/overlap-email")
+    public ResponseEntity<String> findOverlapEmail(@RequestParam String email){
+        return memberService.findOverlapEmail(email);
+    }
     @PutMapping("user/modify")
     public ResponseEntity<String> modifyUser(@AuthenticationPrincipal Member member, @RequestBody MemberUpdateRequestDto requestDto){
         return memberService.modifyUser(member, requestDto);

@@ -23,7 +23,6 @@ public class CommunityResponseDto {
 
     // 커뮤니티 게시물 작성자
     private String nickname;
-
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate

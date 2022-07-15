@@ -58,6 +58,7 @@ public class PostController {
     public ResponseEntity<PostResponseDto> countingView(@PathVariable Long postId){
         return postService.countingView(postId);
     }
-
+    @GetMapping("/actuator/health") public ResponseEntity<String> actuator(){
+        return new ResponseEntity("success", HttpStatus.OK); }
 
 }

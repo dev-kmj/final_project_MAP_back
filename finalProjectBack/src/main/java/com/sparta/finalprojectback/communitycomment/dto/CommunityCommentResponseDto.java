@@ -21,6 +21,7 @@ public class CommunityCommentResponseDto extends Timestamped {
     private String nickname;
 
     // 댓글 작성시각
+
     @CreatedDate
     private LocalDateTime createdAt;
 
