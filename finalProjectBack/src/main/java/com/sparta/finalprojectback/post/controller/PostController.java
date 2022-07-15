@@ -4,7 +4,9 @@ import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.service.PostService;
+import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -56,4 +58,6 @@ public class PostController {
     public ResponseEntity<PostResponseDto> countingView(@PathVariable Long postId){
         return postService.countingView(postId);
     }
+
+
 }
