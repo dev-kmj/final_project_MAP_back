@@ -32,7 +32,7 @@ public class KakaoLoginService {
 
         // 이미 가입한 카카오 회원이라면 정보로 토큰 발급
         if (member.isPresent()) {
-            jwt = jwtTokenProvider.createToken(memberRepository.findByEmail(email).get().getUsername(),
+            jwt = jwtTokenProvider.createToken(memberRepository.findByUsername(kakaoId).get().getUsername(),
                     memberRepository.findByUsername(kakaoId).get().getRoles());
             System.out.println(jwt);
         } else {
