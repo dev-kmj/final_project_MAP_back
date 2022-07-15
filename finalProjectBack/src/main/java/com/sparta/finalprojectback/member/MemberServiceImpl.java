@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService{
     @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapEmail(String email) {
-        Member member = memberRepository.findByUsername(email).orElse(new Member());
+        Member member = memberRepository.findByEmail(email).orElse(new Member());
         if (email.equals(member.getEmail())) {
             return new ResponseEntity<>(ResponseMessage.READ_FIND_EMAIL, HttpStatus.valueOf(StatusCode.OK));
         }

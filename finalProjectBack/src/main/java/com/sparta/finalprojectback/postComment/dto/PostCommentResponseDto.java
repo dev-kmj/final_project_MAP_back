@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class PostCommentResponseDto extends Timestamped {
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+
     @CreatedDate
     private LocalDateTime createdAt;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+
     @LastModifiedDate
     private LocalDateTime modifiedAt;
     private Long id;

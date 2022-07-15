@@ -23,10 +23,8 @@ public class CommunityResponseDto {
 
     // 커뮤니티 게시물 작성자
     private String nickname;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @CreatedDate
     private LocalDateTime createdAt;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 
