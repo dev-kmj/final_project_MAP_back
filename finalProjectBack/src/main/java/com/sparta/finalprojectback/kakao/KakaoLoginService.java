@@ -25,29 +25,27 @@ public class KakaoLoginService {
         KakaoUserInfo userInfo = kakaoOAuth.getUserInfo(authorizedCode);
         String kakaoId = Long.toString(userInfo.getId());   // kakaoId를 String을 변환시키기
         String email = "kakao";
-        Long id;
 
-
-        Optional<Member> member = memberRepository.findByEmail(email);
+        Optional<Member> member = memberRepository.findByUsername(kakaoId);
 
         String jwt = "";
 
         // 이미 가입한 카카오 회원이라면 정보로 토큰 발급
         if (member.isPresent()) {
             jwt = jwtTokenProvider.createToken(memberRepository.findByEmail(email).get().getUsername(),
-                    memberRepository.findByEmail(email).get().getRoles());
+                    memberRepository.findByUsername(kakaoId).get().getRoles());
             System.out.println(jwt);
         } else {
-            id = memberRepository.save(Member.builder()
-                    .username(kakaoId)
-                    .password(passwordEncoder.encode(UUID.randomUUID().toString()))
-                    .nickname(userInfo.getNickname())
-                    .email(email)
-                    .roles(Collections.singletonList("ROLE_USER"))
-                    .build()).getId();
+         memberRepository.save(Member.builder()
+                 .username(kakaoId)
+                 .password(passwordEncoder.encode(UUID.randomUUID().toString()))
+                 .nickname(userInfo.getNickname())
+                 .email(email)
+                 .roles(Collections.singletonList("ROLE_USER"))
+                 .build());
 
-            jwt = jwtTokenProvider.createToken(memberRepository.findById(id).get().getUsername(),
-                    memberRepository.findById(id).get().getRoles());
+            jwt = jwtTokenProvider.createToken(memberRepository.findByUsername(kakaoId).get().getUsername(),
+                    memberRepository.findByUsername(kakaoId).get().getRoles());
             System.out.println(jwt);
         }
         return jwt;
