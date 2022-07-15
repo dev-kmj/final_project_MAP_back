@@ -81,4 +81,8 @@ public class Member extends Timestamped implements UserDetails {
         this.nickname = requestDto.getNickname();
         this.email = requestDto.getEmail();
     }
+
+    public void updateImage(String imageUrl){
+        this.image = imageUrl;
+    }
 }
