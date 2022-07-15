@@ -26,6 +26,7 @@ public class PostResponseDto {
 
     private String nickname;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @CreatedDate
     private LocalDateTime createdAt;
 

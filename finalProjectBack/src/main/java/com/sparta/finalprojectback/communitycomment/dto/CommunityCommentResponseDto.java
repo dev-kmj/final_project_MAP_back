@@ -21,6 +21,7 @@ public class CommunityCommentResponseDto extends Timestamped {
     private String nickname;
 
     // 댓글 작성시각
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @CreatedDate
     private LocalDateTime createdAt;
 
