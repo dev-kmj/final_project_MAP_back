@@ -10,9 +10,6 @@ import javax.validation.Valid;
 @Builder
 @Valid
 public class MemberUpdateRequestDto {
-    private Long id;
     private String email;
     private String nickname;
-    private String image;
-    private String password;
 }

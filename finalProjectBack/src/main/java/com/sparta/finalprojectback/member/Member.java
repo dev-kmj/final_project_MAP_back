@@ -79,8 +79,6 @@ public class Member extends Timestamped implements UserDetails {
 
     public void updateUser(MemberUpdateRequestDto requestDto) {
         this.nickname = requestDto.getNickname();
-        this.password = requestDto.getPassword();
-        this.image = requestDto.getImage();
         this.email = requestDto.getEmail();
     }
 }

@@ -85,7 +85,7 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<String> findOverlapUsername(String username) {
         Member member = memberRepository.findByUsername(username).orElse(new Member());
         if (username.equals(member.getUsername())) {
-            return new ResponseEntity<>(ResponseMessage.READ_FIND_USER, HttpStatus.valueOf(StatusCode.OK));
+            return new ResponseEntity<>(ResponseMessage.READ_FIND_USERNAME, HttpStatus.valueOf(StatusCode.OK));
         }
         return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
     }
@@ -94,7 +94,16 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<String> findOverlapNickname(String nickname) {
         Member member = memberRepository.findByUsername(nickname).orElse(new Member());
         if (nickname.equals(member.getNickname())) {
-            return new ResponseEntity<>(ResponseMessage.READ_FIND_USER, HttpStatus.valueOf(StatusCode.OK));
+            return new ResponseEntity<>(ResponseMessage.READ_FIND_NICKNAME, HttpStatus.valueOf(StatusCode.OK));
+        }
+        return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
+    }
+    @SneakyThrows
+    @Override
+    public ResponseEntity<String> findOverlapEmail(String email) {
+        Member member = memberRepository.findByEmail(email).orElse(new Member());
+        if (email.equals(member.getEmail())) {
+            return new ResponseEntity<>(ResponseMessage.READ_FIND_EMAIL, HttpStatus.valueOf(StatusCode.OK));
         }
         return new ResponseEntity<>(HttpStatus.valueOf(StatusCode.OK));
     }
