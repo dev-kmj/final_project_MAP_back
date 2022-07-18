@@ -106,6 +106,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .category(post.getCategory())
                     .nickname(post.getMember().getNickname())
                     .createdAt(post.getCreatedAt())
+                    .modifiedAt((post.getModifiedAt()))
                     .period(post.getPeriod())
                     .image(post.getImage())
                     .likes(post.getLikes())

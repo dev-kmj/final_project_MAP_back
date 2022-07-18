@@ -80,20 +80,21 @@ public class PostServiceImpl implements PostService{
         }
 
         Category category = null;
-        if(requestDto.getCategory() == "food"){ //        FOOD 맛집투어
+        System.out.println(requestDto.getCategory());
+        if(requestDto.getCategory().equals("food")){ //        FOOD 맛집투어
             category = Category.FOOD;
-        }else if(requestDto.getCategory() == "healing"){ //        HEALING 힐링여행
+        }else if(requestDto.getCategory().equals("healing")){ //        HEALING 힐링여행
             category = Category.HEALING;
-        }else if(requestDto.getCategory() == "scenery"){ //        SCENERY 풍경
+        }else if(requestDto.getCategory().equals("scenery")){ //        SCENERY 풍경
             category = Category.SCENERY;
-        }else if(requestDto.getCategory() == "cafe"){ //        CAFE 카페투어
+        }else if(requestDto.getCategory().equals("cafe")){ //        CAFE 카페투어
             category = Category.CAFE;
-        }else if(requestDto.getCategory() == "attraction"){//        ATTRACTION 관광지
+        }else if(requestDto.getCategory().equals("attraction")){//        ATTRACTION 관광지
             category = Category.ATTRACTION;
-        }else if(requestDto.getCategory() == "date"){ //        DATE 데이트
+        }else if(requestDto.getCategory().equals("date")){ //        DATE 데이트
             category = Category.ATTRACTION;
         }
-
+        System.out.println(category);
         targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
         return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
