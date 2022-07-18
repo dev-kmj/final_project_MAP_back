@@ -1,6 +1,8 @@
 package com.sparta.finalprojectback.s3.service;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.MemberRepository;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,8 @@ public class FileService {
 
     private final AwsS3Service s3Service;
     private final PostRepository postRepository;
+
+    private final MemberRepository memberRepository;
 
     //Multipart를 통해 전송된 파일을 업로드 하는 메소드
     @Transactional
@@ -40,6 +44,26 @@ public class FileService {
         return imageUrl;
     }
 
+    @Transactional
+    public String uploadImage(MultipartFile file, Member member, String path) {
+        Member targetMember = memberRepository.findById(member.getId()).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
+        );
+
+        String fileName = path + "/" + createFileName(file.getOriginalFilename());
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentLength(file.getSize());
+        objectMetadata.setContentType(file.getContentType());
+        try (InputStream inputStream = file.getInputStream()) {
+            s3Service.uploadFile(inputStream, objectMetadata, fileName);
+        } catch (IOException e){
+            throw new IllegalArgumentException(String.format("파일 변환 중 에러가 발생하였습니다 (%s)", file.getOriginalFilename()));
+        }
+        String imageUrl = s3Service.getFileUrl(fileName);
+        targetMember.updateImage(imageUrl);
+        return imageUrl;
+    }
+
     public Long deleteImage(Long postId){
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 게시물 아이디 입니다.")
@@ -51,6 +75,12 @@ public class FileService {
         }
         s3Service.deleteFile(post.getImage());
         return postId;
+    }
+
+    public Long deleteImage(Member member){
+
+        s3Service.deleteFile(member.getImage());
+        return member.getId();
     }
 
     // 파일 읽어오기
