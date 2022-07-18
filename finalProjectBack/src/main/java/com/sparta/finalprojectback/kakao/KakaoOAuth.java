@@ -96,7 +96,8 @@ public class KakaoOAuth {
         Long id = body.getLong("id");
 
         // 이메일 -> 예외처리
-        String email = body.getJSONObject("kakao_account").getString("email");
+//        String email = body.getJSONObject("kakao_account").getString("email");
+        String email = "kakao";
         String nickname = body.getJSONObject("properties").getString("nickname");
 
         return new KakaoUserInfo(id, email, nickname);
