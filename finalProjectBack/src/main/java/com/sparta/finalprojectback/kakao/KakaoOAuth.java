@@ -1,5 +1,6 @@
 package com.sparta.finalprojectback.kakao;
 
+import com.google.gson.JsonElement;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,6 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonElement;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Service
 public class KakaoOAuth {
@@ -27,6 +34,7 @@ public class KakaoOAuth {
         // 2. 액세스 토큰 -> 카카오 사용자 정보
         KakaoUserInfo userInfo = getUserInfoByToken(accessToken);
 
+        System.out.println("사용자정보 : " + userInfo.getNickname());
         return userInfo;
     }
 
@@ -61,9 +69,10 @@ public class KakaoOAuth {
         String tokenJson = response.getBody();
         org.json.JSONObject rjson = new JSONObject(tokenJson);
         String accessToken = rjson.getString("access_token");
-
+        System.out.println("accessToken: " + accessToken);
         return accessToken;
     }
+
 
     public KakaoUserInfo getUserInfoByToken(String accessToken) {
         // HttpHeader 오브젝트 생성
@@ -85,6 +94,8 @@ public class KakaoOAuth {
 
         org.json.JSONObject body = new org.json.JSONObject(response.getBody());
         Long id = body.getLong("id");
+
+        // 이메일 -> 예외처리
         String email = body.getJSONObject("kakao_account").getString("email");
         String nickname = body.getJSONObject("properties").getString("nickname");
 
