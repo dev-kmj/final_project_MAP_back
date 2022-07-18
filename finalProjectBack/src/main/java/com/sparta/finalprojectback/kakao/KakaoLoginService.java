@@ -25,15 +25,6 @@ public class KakaoLoginService {
     private final KakaoOAuth kakaoOAuth;
 
 
-    public String getAccessToken(String authorizedCode) {
-        String accessToken = kakaoOAuth.getAccessToken(authorizedCode);
-        System.out.println("액세스 토큰: "  + accessToken);
-        return accessToken;
-    }
-
-
-
-
     public String kakaoLogin(String authorizedCode) {
         // 카카오 OAuth2 를 통해 카카오 사용자 정보 조회
         System.out.println("authorizedCode: " + authorizedCode);
@@ -80,10 +71,5 @@ public class KakaoLoginService {
         return jwt;
 
     }
-
-
-
-
-
 
 }

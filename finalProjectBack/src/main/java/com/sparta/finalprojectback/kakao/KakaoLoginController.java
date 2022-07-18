@@ -18,17 +18,6 @@ public class KakaoLoginController {
 //        System.out.println("Authorized code : " + code);
 //        String accessToken = kakaoOAuth.getAccessToken(code);
 //        System.out.println("accessToken: " + accessToken);
-//        return kakaoLoginService.kakaoLogin(code);
-        return kakaoLoginService.getAccessToken(code);
+        return kakaoLoginService.kakaoLogin(code);
     }
-
-
-    // 액세스 토큰 받기
-    // 유저정보받아서 토큰받기 분리
-
-//
-//    @PostMapping("/login/kakao")
-//    public String kakaoLogin(@RequestBody KakaoUserInfo kakaoUserInfo) {
-//        kakaoLoginService.kakaoLogin(kakaoUserInfo);
-//    }
 }
