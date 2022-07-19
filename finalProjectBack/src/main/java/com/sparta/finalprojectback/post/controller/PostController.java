@@ -39,6 +39,7 @@ public class PostController {
     // 나의 여행 게시물 조회
     @GetMapping("/user/plan/my-posts")
     public ResponseEntity<List<PostResponseDto>> readMyPost(@AuthenticationPrincipal Member member, boolean isComplete){
+        postService.deleteEmptyPost(member, isComplete);
         return postService.readMyPost(member, isComplete);
     }
 

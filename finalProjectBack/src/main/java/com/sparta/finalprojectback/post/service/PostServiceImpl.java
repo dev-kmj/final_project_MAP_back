@@ -106,6 +106,13 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    public ResponseEntity<String> deleteEmptyPost(Member member, boolean isComplete){
+        List<Post> emptyPosts = postRepository.findPostsByMemberIdAndIsComplete(member.getId(), isComplete);
+        postRepository.deleteAll(emptyPosts);
+        return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
+    }
+
+    @Override
     public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete) {
 
         // isComplete 이용해서 작성완료된 게시물만 반환
