@@ -14,7 +14,7 @@ public interface PostService {
     ResponseEntity<Long> createPost(Member member);
     ResponseEntity<String> deletePost(Member member, Long postId);
     ResponseEntity<String> updatePost(Member member, Long postId, PostRequestDto requestDto);
-    ResponseEntity<List<PostResponseDto>> readMyPost(Member member);
+    ResponseEntity<List<PostResponseDto>> readMyPost(Member member, boolean isComplete);
     ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete);
     // 이미지 업로드 api는 나중에 진행
     Post getPostById(Long postId);
