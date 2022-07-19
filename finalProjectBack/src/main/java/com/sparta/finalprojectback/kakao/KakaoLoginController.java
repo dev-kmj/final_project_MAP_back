@@ -13,7 +13,7 @@ public class KakaoLoginController {
 
     // 프론트에서 인가코드를 받아오는 API
     // 일단 print로 확인 완료 (코드, 토큰 둘 다 출력)
-    @GetMapping("/kakao")
+    @GetMapping("/kakao/login")
     public String kakaoCallback(@RequestParam String code) {
 //        System.out.println("Authorized code : " + code);
 //        String accessToken = kakaoOAuth.getAccessToken(code);
