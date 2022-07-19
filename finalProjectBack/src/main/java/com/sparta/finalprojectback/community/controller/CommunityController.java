@@ -7,6 +7,8 @@ import com.sparta.finalprojectback.communitycomment.service.CommunityCommentServ
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@Api(tags = "커뮤니티 게시물 기능")
 @RequiredArgsConstructor
 @RestController
 public class CommunityController {
@@ -27,21 +30,18 @@ public class CommunityController {
     /**
      * 리팩토링 진행중
      */
-
-    // 게시물 작성
+    @ApiOperation("커뮤니티 게시물 작성")
     @PostMapping("/user/community/post")
     public Long createCommunity(@RequestBody @Valid CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
 
         return communityService.createCommunity(requestDto, member);
     }
-
-    // 전체 조회 (제목 + 내용)
+    @ApiOperation("커뮤니티 게시물 전체 조회")
     @GetMapping("/user/community/posts")
     public List<CommunityResponseDto> getCommunityList() {
         return communityService.getCommunityList();
     }
-
-    // 페이징 처리 (url 다름 /paging)
+    @ApiOperation("커뮤니티 게시물 페이징 처리")
     @GetMapping("/user/community/posts/paging")
     public Page<CommunityResponseDto> getAllCommunities(
             @RequestParam("page") int page,
@@ -51,30 +51,23 @@ public class CommunityController {
     ) {
         return communityService.getAllCommunities(page, size, sortBy, isAsc);
     }
-
-
-    // 내 게시물 조회
+    @ApiOperation("내가 작성한 커뮤니티 게시물 조회")
     @GetMapping("/user/community/my-posts")
     public List<CommunityResponseDto> getMyCommunityList(@AuthenticationPrincipal Member member) {
         return communityService.getMyCommunityList(member);
     }
-
-
-    // 게시물 상세 조회
+    @ApiOperation("하나의 커뮤니티 게시물 조회")
     @GetMapping("/user/community/post/{postId}")
     public ResponseEntity<CommunityResponseDto> getCommunityDetail(@PathVariable Long postId) {
         return new ResponseEntity<>(communityService.communityDetail(postId), HttpStatus.valueOf(StatusCode.OK));
     }
-
-
-    // 게시물 수정
+    @ApiOperation("커뮤니티 게시물 수정")
     @PutMapping("/user/community/post/{postId}")
     public ResponseEntity<String> updateCommunity(@PathVariable Long postId, @RequestBody CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
         communityService.updateCommunity(postId, requestDto, member);
         return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
-
-    // 게시물 삭제
+    @ApiOperation("커뮤니티 게시물 삭제")
     @DeleteMapping("/user/community/post/{postId}")
     public ResponseEntity<String> deleteCommunity(@PathVariable Long postId, @AuthenticationPrincipal Member member) {
         communityCommentService.deleteAllCommunityComments(postId);
