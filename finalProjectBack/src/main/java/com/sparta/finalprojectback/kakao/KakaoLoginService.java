@@ -31,7 +31,7 @@ public class KakaoLoginService {
         System.out.println("authorizedCode: " + authorizedCode);
 
         KakaoUserInfo userInfo = kakaoOAuth.getUserInfo(authorizedCode);
-        String kakaoId = Long.toString(userInfo.getId());   // kakaoId를 String을 변환시키기
+        String kakaoId = Long.toString(userInfo.getKakaoId());   // kakaoId를 String을 변환시키기
         String email = "kakao";
 
         Optional<Member> member = memberRepository.findByUsername(kakaoId);
