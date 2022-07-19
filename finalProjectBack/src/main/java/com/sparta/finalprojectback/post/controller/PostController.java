@@ -4,7 +4,6 @@ import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
 import com.sparta.finalprojectback.post.service.PostService;
-import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +38,8 @@ public class PostController {
 
     // 나의 여행 게시물 조회
     @GetMapping("/user/plan/my-posts")
-    public ResponseEntity<List<PostResponseDto>> readMyPost(@AuthenticationPrincipal Member member){
-        return postService.readMyPost(member);
+    public ResponseEntity<List<PostResponseDto>> readMyPost(@AuthenticationPrincipal Member member, boolean isComplete){
+        return postService.readMyPost(member, isComplete);
     }
 
     // 모든 여행 게시물 조회
