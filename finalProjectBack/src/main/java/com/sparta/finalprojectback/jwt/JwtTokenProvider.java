@@ -23,8 +23,8 @@ public class JwtTokenProvider {
 
     private String secretKey = "dflaneiollsgd";
 
-    //토큰 유효시간 30분으로 설정
-    private long tokenValidTime = 30 * 60 * 1000L;
+    //토큰 유효시간 30분 * 4 으로 설정
+    private long tokenValidTime = 30 * 60 * 1000L * 4;
 
     private final UserDetailsService userDetailsService;
 
