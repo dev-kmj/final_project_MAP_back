@@ -67,7 +67,7 @@ public class PostServiceImpl implements PostService{
 
 
     /**
-     * delete 부분 리팩토링 - 연관관계 매핑 이용하기
+     * delete 부분 리팩토링 - 연관관계 매핑 이용해서 코드 수정 - 배포 사이트에서 테스트해보기
      */
     @Override
     @Transactional

@@ -25,7 +25,10 @@ public class Community extends Timestamped {
     @Column(length = 300, nullable = false)
     private String content;
 
-    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Member.class)
+//    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Member.class)
+//    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     /**

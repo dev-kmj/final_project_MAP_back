@@ -41,11 +41,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
 
     private int period;
 
-    //FK
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private Member member;
-
-    // EAGER -> LAZY
+    // EAGER -> LAZY, 조회부분에 @Transactional(readOnly = true)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
