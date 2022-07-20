@@ -2,6 +2,8 @@ package com.sparta.finalprojectback.post.model;
 
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.member.Timestamped;
+import com.sparta.finalprojectback.postComment.model.PostComment;
+import com.sparta.finalprojectback.schedule.model.Schedule;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,7 +42,11 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     private int period;
 
     //FK
-    @ManyToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Member member;
+
+    // EAGER -> LAZY
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     // 좋아요 매핑
@@ -50,6 +56,25 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
             orphanRemoval = true,
             fetch = FetchType.LAZY)
     private List<Likes> likesList;
+
+
+    // 댓글 매핑
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<PostComment> postComments;
+
+
+    // 스케줄 매핑
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Schedule> schedules;
+
 
     public void updatePost(String title, Category category, int period, boolean isComplete) {
         this.title = title;

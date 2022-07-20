@@ -67,8 +67,8 @@ public class CommunityCommentService {
     }
 
 
-    @Transactional(rollbackFor = Exception.class)
-    public void deleteAllCommunityComments(Long id) {
-        communityCommentRepository.deleteAllByCommunity_Id(id);
-    }
+//    @Transactional(rollbackFor = Exception.class)
+//    public void deleteAllCommunityComments(Long id) {
+//        communityCommentRepository.deleteAllByCommunity_Id(id);
+//    }
 }

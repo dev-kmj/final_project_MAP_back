@@ -67,10 +67,14 @@ public class CommunityController {
         communityService.updateCommunity(postId, requestDto, member);
         return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
+
+    /**
+     * 리팩토링 (연관관계 매핑)
+     */
     @ApiOperation("커뮤니티 게시물 삭제")
     @DeleteMapping("/user/community/post/{postId}")
     public ResponseEntity<String> deleteCommunity(@PathVariable Long postId, @AuthenticationPrincipal Member member) {
-        communityCommentService.deleteAllCommunityComments(postId);
+//        communityCommentService.deleteAllCommunityComments(postId);
         communityService.deleteCommunity(postId, member);
         return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }

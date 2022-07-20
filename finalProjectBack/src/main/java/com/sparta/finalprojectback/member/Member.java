@@ -2,6 +2,7 @@ package com.sparta.finalprojectback.member;
 
 import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Likes;
+import com.sparta.finalprojectback.post.model.Post;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -70,12 +71,20 @@ public class Member extends Timestamped implements UserDetails {
         return true;
     }
 
-    @OneToMany(
-            mappedBy = "member",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
-    private List<Likes> likes;
+
+    /**
+     * 추가한 부분
+     */
+    // 게시물 양방향 매핑
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Post> posts;
+
+//    @OneToMany(
+//            mappedBy = "member",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true,
+//            fetch = FetchType.LAZY)
+//    private List<Likes> likes;
 
     public void updateUser(MemberUpdateRequestDto requestDto) {
         this.nickname = requestDto.getNickname();
