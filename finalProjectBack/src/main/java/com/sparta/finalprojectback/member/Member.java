@@ -72,19 +72,16 @@ public class Member extends Timestamped implements UserDetails {
     }
 
 
-    /**
-     * 추가한 부분
-     */
-    // 게시물 양방향 매핑
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Post> posts;
+//    // 게시물 양방향 매핑
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Post> posts;
 
-//    @OneToMany(
-//            mappedBy = "member",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true,
-//            fetch = FetchType.LAZY)
-//    private List<Likes> likes;
+    @OneToMany(
+            mappedBy = "member",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Likes> likes;
 
     public void updateUser(MemberUpdateRequestDto requestDto) {
         this.nickname = requestDto.getNickname();

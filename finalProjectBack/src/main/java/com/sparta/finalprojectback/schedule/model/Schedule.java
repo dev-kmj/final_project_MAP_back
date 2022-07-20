@@ -39,5 +39,4 @@ public class Schedule extends Timestamped {
     //FK
     @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
-
 }
