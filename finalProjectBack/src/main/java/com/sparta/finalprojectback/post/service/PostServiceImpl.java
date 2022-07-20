@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +120,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<List<PostResponseDto>> readMyPost(Member member, boolean isComplete) {
         List<Post> myPosts = postRepository.findPostsByMemberIdAndIsComplete(member.getId(), !isComplete);
         return getListResponseEntity(myPosts);
@@ -133,6 +134,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete) {
 
         // isComplete 이용해서 작성완료된 게시물만 반환
