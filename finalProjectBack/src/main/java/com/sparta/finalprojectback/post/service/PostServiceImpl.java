@@ -134,7 +134,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public ResponseEntity<List<PostResponseDto>> readAllPost(boolean isComplete) {
 
         // isComplete 이용해서 작성완료된 게시물만 반환
