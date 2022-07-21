@@ -1,5 +1,7 @@
 package com.sparta.finalprojectback.post.controller;
 
+import com.sparta.finalprojectback.LogService;
+import com.sparta.finalprojectback.community.controller.CommunityController;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.dto.PostRequestDto;
@@ -7,6 +9,9 @@ import com.sparta.finalprojectback.post.service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
