@@ -1,6 +1,7 @@
 package com.sparta.finalprojectback.post.service;
 
 import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.post.controller.PostController;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.model.Category;
 import com.sparta.finalprojectback.post.model.Post;
@@ -13,6 +14,8 @@ import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,7 +27,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
-
+    private final Logger logger = LoggerFactory.getLogger(PostController.class);
     private final PostRepository postRepository;
     private final ScheduleRepository scheduleRepository;
     private final FileService fileService;
@@ -43,7 +46,7 @@ public class PostServiceImpl implements PostService{
                 .member(member)
                 .views(0)
                 .build()).getId();
-
+        logger.info("createPostMemberId : {}",member.getId());
         return new ResponseEntity<>(createdPostId, HttpStatus.valueOf(StatusCode.CREATED));
     }
 
@@ -62,6 +65,8 @@ public class PostServiceImpl implements PostService{
         postCommentRepository.deleteAllByPost_Id(postId);
         fileService.deleteImage(postId);
         postRepository.deleteById(postId);
+        logger.info("deletePostMemberId : {}",member.getId());
+        logger.info("deletePostId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -116,6 +121,8 @@ public class PostServiceImpl implements PostService{
         }
         System.out.println(category);
         targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
+        logger.info("updatePostMemberId : {}", member.getId());
+        logger.info("updatePostId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 

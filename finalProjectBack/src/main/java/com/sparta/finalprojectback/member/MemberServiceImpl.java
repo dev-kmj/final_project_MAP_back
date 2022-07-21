@@ -5,6 +5,8 @@ import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,12 +21,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
 
+    private final Logger logger = LoggerFactory.getLogger(MemberController.class);
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberRepository memberRepository;
 
     @Override
     public Long join(MemberJoinRequestDto requestDto) {
+        logger.info("joinUsername : {}", requestDto.getUsername());
         return memberRepository.save(Member.builder()
                 .username(requestDto.getUsername())
                 .password(passwordEncoder.encode(requestDto.getPassword()))
@@ -44,11 +48,13 @@ public class MemberServiceImpl implements MemberService{
         if (!passwordEncoder.matches(requestDto.getPassword(), member.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
+        logger.info("loginId : {}", member.getId());
         return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
     }
 
     @Override
     public MemberResponseDto myInfo(Member member) {
+        logger.info("myInfoId : {}", member.getId());
         return MemberResponseDto.builder()
                 .id(member.getId())
                 .username(member.getUsername())
@@ -78,6 +84,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public ResponseEntity<String> deleteUser(Member member, Long memberId) {
         memberRepository.deleteById(memberId);
+        logger.info("deleteUserId : {}", memberId);
         return new ResponseEntity<>(ResponseMessage.DELETE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
     @SneakyThrows

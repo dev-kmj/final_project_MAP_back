@@ -1,11 +1,14 @@
 package com.sparta.finalprojectback.post.service;
 
 import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.post.controller.LikeController;
 import com.sparta.finalprojectback.post.dto.LikeResponseDto;
 import com.sparta.finalprojectback.post.model.Likes;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LikeService {
 
+    private final Logger logger = LoggerFactory.getLogger(LikeController.class);
     private final LikeRepository likeRepository;
     private final PostService postService;
 
@@ -28,8 +32,12 @@ public class LikeService {
 
         if (likePost.isEmpty()) {
             createLike(member, postId);
+            logger.info("isLikeMemberId : {}", member.getId());
+            logger.info("isLikePostId : {}", postId);
             likeRepository.findByMemberIdAndPostId(member.getId(), postId).get().getPost().updateLike(1);
         } else {
+            logger.info("unLikeMemberId : {}", member.getId());
+            logger.info("unLikePostId : {}", postId);
             likeRepository.findByMemberIdAndPostId(member.getId(), postId).get().getPost().updateLike(-1);
             likeRepository.deleteByMemberIdAndPostId(member.getId(), postId);
         }

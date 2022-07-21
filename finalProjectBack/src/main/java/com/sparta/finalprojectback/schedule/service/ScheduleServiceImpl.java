@@ -3,6 +3,7 @@ package com.sparta.finalprojectback.schedule.service;
 import com.sparta.finalprojectback.post.dto.PostResponseDto;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
+import com.sparta.finalprojectback.schedule.controller.ScheduleController;
 import com.sparta.finalprojectback.schedule.dto.ScheduleRequestDto;
 import com.sparta.finalprojectback.schedule.dto.ScheduleResponseDto;
 import com.sparta.finalprojectback.schedule.model.Schedule;
@@ -10,6 +11,8 @@ import com.sparta.finalprojectback.schedule.repository.ScheduleRepository;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
-
+    private final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
     private final ScheduleRepository scheduleRepository;
     private final PostRepository postRepository;
     @Override
@@ -70,6 +73,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ResponseEntity<String> deleteSchedule(Long scheduleId) {
         scheduleRepository.deleteById(scheduleId);
+        logger.info("deleteScheduleId : {}", scheduleId);
         return new ResponseEntity<>(ResponseMessage.DELETE_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -77,6 +81,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Transactional
     public ResponseEntity<String> deleteAllSchedule(Long postId) {
         scheduleRepository.deleteAllByPost_Id(postId);
+        logger.info("deleteAllScheduleId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.DELETE_ALL_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -112,6 +117,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .likes(post.getLikes())
                     .build());
         }
+        logger.info("readSearchPost : {}",local);
         return responseDtoList;
     }
 }

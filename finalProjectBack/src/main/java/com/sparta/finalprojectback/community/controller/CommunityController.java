@@ -4,12 +4,16 @@ import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.service.CommunityService;
 import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
+import com.sparta.finalprojectback.LogService;
 import com.sparta.finalprojectback.member.Member;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +27,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class CommunityController {
-
     private final CommunityService communityService;
     private final CommunityCommentService communityCommentService;
 
@@ -33,7 +36,6 @@ public class CommunityController {
     @ApiOperation("커뮤니티 게시물 작성")
     @PostMapping("/user/community/post")
     public Long createCommunity(@RequestBody @Valid CommunityRequestDto requestDto, @AuthenticationPrincipal Member member) {
-
         return communityService.createCommunity(requestDto, member);
     }
     @ApiOperation("커뮤니티 게시물 전체 조회")
