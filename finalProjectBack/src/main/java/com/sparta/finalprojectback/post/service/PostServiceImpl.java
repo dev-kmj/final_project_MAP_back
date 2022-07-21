@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,10 +62,30 @@ public class PostServiceImpl implements PostService{
         postCommentRepository.deleteAllByPost_Id(postId);
         fileService.deleteImage(postId);
         postRepository.deleteById(postId);
-
-
         return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
+
+
+    /**
+     * delete 부분 리팩토링 - 연관관계 매핑 이용해서 코드 수정 - 배포 사이트에서 테스트해보기
+     */
+//    @Override
+//    @Transactional
+//    public ResponseEntity<String> deletePost(Member member, Long postId) {
+//
+//        // 나중에 수정할 부분
+//        Post post = postRepository.findById(postId).orElseThrow(
+//                () -> new IllegalArgumentException("존재하지 않는 게시물 아이디 입니다.")
+//        );
+//        if(post.getMember().getId() != member.getId()){
+//            return new ResponseEntity<>("유저가 생성한 게시물만 삭제할 수 있습니다.", HttpStatus.valueOf(StatusCode.BAD_REQUEST));
+//        }
+//
+//        // 스케줄, 댓글, 사진파일은 게시물 삭제하면 같이 삭제
+//        postRepository.deleteById(postId);
+//        fileService.deleteImage(postId);
+//        return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
+//    }
 
     @Override
     @Transactional
@@ -150,6 +170,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ResponseEntity<PostResponseDto> readPostInfo(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () ->  new IllegalArgumentException("해당하는 게시물이 없습니다.")

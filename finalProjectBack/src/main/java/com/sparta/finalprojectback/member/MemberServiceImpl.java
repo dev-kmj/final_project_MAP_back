@@ -99,7 +99,7 @@ public class MemberServiceImpl implements MemberService{
     @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapNickname(String nickname) {
-        Member member = memberRepository.findByUsername(nickname).orElse(new Member());
+        Member member = memberRepository.findByNickname(nickname).orElse(new Member());
         if (nickname.equals(member.getNickname())) {
             return new ResponseEntity<>(ResponseMessage.READ_FIND_NICKNAME, HttpStatus.valueOf(StatusCode.OK));
         }
