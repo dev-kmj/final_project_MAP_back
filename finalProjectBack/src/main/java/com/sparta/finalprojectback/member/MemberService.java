@@ -11,6 +11,7 @@ public interface MemberService {
     public MemberResponseDto myInfo(Member member);
     ResponseEntity<List<MemberResponseDto>> findUser();
     ResponseEntity<String> deleteUser(Member member, Long memberId);
+    ResponseEntity<String> deleteUser(Member member);
     ResponseEntity<String> findOverlapUsername(String username);
     ResponseEntity<String> findOverlapNickname(String nickname);
     ResponseEntity<String> findOverlapEmail(String email);

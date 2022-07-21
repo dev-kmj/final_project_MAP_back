@@ -62,11 +62,18 @@ public class MemberController {
     public ResponseEntity<List<MemberResponseDto>> findUser(@AuthenticationPrincipal Member member){
         return memberService.findUser();
     }
+    @ApiOperation("회원 탈퇴 기능")
+    @DeleteMapping("user/member")
+    public ResponseEntity<String> deleteMe(@AuthenticationPrincipal Member member){
+        return memberService.deleteUser(member);
+    }
+
     @ApiOperation("유저 삭제하는 관리자 기능")
     @DeleteMapping("admin/member/{memberId}")
-    public ResponseEntity<String> deletePostComment(@AuthenticationPrincipal Member member, @PathVariable Long memberId){
+    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal Member member, @PathVariable Long memberId){
         return memberService.deleteUser(member, memberId);
     }
+
     @ApiOperation("유저 네임 중복 체크 기능")
     @GetMapping("/overlap-username")
     public ResponseEntity<String> findOverlapUsername(@RequestParam String username){

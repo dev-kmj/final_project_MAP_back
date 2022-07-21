@@ -80,6 +80,13 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.deleteById(memberId);
         return new ResponseEntity<>(ResponseMessage.DELETE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
+
+    @Override
+    public ResponseEntity<String> deleteUser(Member member) {
+        memberRepository.deleteById(member.getId());
+        return new ResponseEntity<>(ResponseMessage.DELETE_USER, HttpStatus.valueOf(StatusCode.OK));
+    }
+
     @SneakyThrows
     @Override
     public ResponseEntity<String> findOverlapUsername(String username) {
