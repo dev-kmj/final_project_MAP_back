@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class KakaoLoginController {
 //    test
-    private final Logger logger = LoggerFactory.getLogger(KakaoLoginController.class);
+//    private final Logger logger = LoggerFactory.getLogger(KakaoLoginController.class);
     private final KakaoLoginService kakaoLoginService;
     @ApiOperation("카카오 로그인")
     @GetMapping("/kakao/login")
     public String kakaoCallback(@RequestParam String code) {
-        logger.info("kakaoCallbackCode : {}", code);
+//        logger.info("kakaoCallbackCode : {}", code);
         return kakaoLoginService.kakaoLogin(code);
     }
 }

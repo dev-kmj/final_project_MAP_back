@@ -22,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class CommunityCommentService {
-    private final Logger logger = LoggerFactory.getLogger(CommunityCommentController.class);
+//    private final Logger logger = LoggerFactory.getLogger(CommunityCommentController.class);
     private final CommunityCommentRepository communityCommentRepository;
     private final CommunityRepository communityRepository;
 
@@ -38,8 +38,8 @@ public class CommunityCommentService {
         }
 
         CommunityComment communityComment = new CommunityComment(requestDto, community, member);
-        logger.info("createCommentMemberId : {}", member.getId());
-        logger.info("createCommentId : {}", communityId);
+//        logger.info("createCommentMemberId : {}", member.getId());
+//        logger.info("createCommentId : {}", communityId);
         return communityCommentRepository.save(communityComment).getId();
     }
 
@@ -47,7 +47,7 @@ public class CommunityCommentService {
      // 조회
     public List<CommunityCommentResponseDto> getCommunityComments(Long communityId) {
         List<CommunityComment> communityCommentList = communityCommentRepository.findAllByCommunity_Id(communityId);
-        logger.info("getCommunityCommentsId : {}", communityId);
+//        logger.info("getCommunityCommentsId : {}", communityId);
         return getCommunityCommentResponseDtos(communityCommentList);
     }
 
@@ -69,8 +69,8 @@ public class CommunityCommentService {
 
         communityCommentRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 댓글이 없습니다."));
-        logger.info("deleteCommunityCommentMemberId : {}",member.getId());
-        logger.info("deleteCommunityCommentId : {}",id);
+//        logger.info("deleteCommunityCommentMemberId : {}",member.getId());
+//        logger.info("deleteCommunityCommentId : {}",id);
         communityCommentRepository.deleteByIdAndMember(id, member);
     }
 

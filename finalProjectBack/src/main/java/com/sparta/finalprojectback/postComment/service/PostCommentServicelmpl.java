@@ -25,7 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostCommentServicelmpl implements PostCommentService {
 
-    private final Logger logger = LoggerFactory.getLogger(PostCommentController.class);
+//    private final Logger logger = LoggerFactory.getLogger(PostCommentController.class);
     private final PostCommentRepository postCommentRepository;
     private final PostRepository postRepository;
 
@@ -41,16 +41,16 @@ public class PostCommentServicelmpl implements PostCommentService {
             postComment = new PostComment(requestDto.getComment(), post, member);
         }
         postCommentRepository.save(postComment);
-        logger.info("createPostCommentMemberId : {}",member.getId());
-        logger.info("createPostCommentPostId : {}",postId);
+//        logger.info("createPostCommentMemberId : {}",member.getId());
+//        logger.info("createPostCommentPostId : {}",postId);
         return new ResponseEntity<>(postComment.getId(),HttpStatus.valueOf(StatusCode.CREATED));
     }
 
     @Override
     public ResponseEntity<String> deletePostComment(Member member, Long commentId) {
         postCommentRepository.deleteById(commentId);
-        logger.info("deletePostCommentMemberId : {}",member.getId());
-        logger.info("deletePostCommentCommentId : {}",commentId);
+//        logger.info("deletePostCommentMemberId : {}",member.getId());
+//        logger.info("deletePostCommentCommentId : {}",commentId);
         return new ResponseEntity<>(ResponseMessage.DELETE_POST_COMMENT, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -69,8 +69,8 @@ public class PostCommentServicelmpl implements PostCommentService {
                             .post(postComment.getPost())
                             .build());
         }
-        logger.info("readMyPostCommentMemberId : {}", member.getId());
-        logger.info("readMyPostCommentPostId : {}", postId);
+//        logger.info("readMyPostCommentMemberId : {}", member.getId());
+//        logger.info("readMyPostCommentPostId : {}", postId);
         return new ResponseEntity<>(postCommentsList, HttpStatus.valueOf(StatusCode.OK));
     }
 }
