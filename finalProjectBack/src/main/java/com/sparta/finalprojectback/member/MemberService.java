@@ -16,4 +16,6 @@ public interface MemberService {
     ResponseEntity<String> findOverlapNickname(String nickname);
     ResponseEntity<String> findOverlapEmail(String email);
     ResponseEntity<String> modifyUser(Member member, MemberUpdateRequestDto requestDto);
+
+    ResponseEntity<String> confirmPassword(Member member, String password);
 }

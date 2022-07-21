@@ -124,4 +124,13 @@ public class MemberServiceImpl implements MemberService{
         memberModify.updateUser(requestDto);
         return new ResponseEntity<>(ResponseMessage.UPDATE_USER, HttpStatus.valueOf(StatusCode.OK));
     }
+
+    @Override
+    @SneakyThrows
+    public ResponseEntity<String> confirmPassword(Member member, String password) {
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
+        }
+        return new ResponseEntity<>("비밀번호 확인이 완료되었습니다.", HttpStatus.valueOf(StatusCode.OK));
+    }
 }

@@ -94,4 +94,9 @@ public class MemberController {
     public ResponseEntity<String> modifyUser(@AuthenticationPrincipal Member member, @RequestBody MemberUpdateRequestDto requestDto){
         return memberService.modifyUser(member, requestDto);
     }
+    @ApiOperation("유저 비밀번호 확인 기능")
+    @GetMapping("user/member")
+    public ResponseEntity<String> confirmPassword(@AuthenticationPrincipal Member member, @RequestParam String password){
+        return memberService.confirmPassword(member, password);
+    }
 }
