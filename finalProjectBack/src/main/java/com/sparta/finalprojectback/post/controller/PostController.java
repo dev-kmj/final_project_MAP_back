@@ -45,7 +45,7 @@ public class PostController {
         return postService.readAllPost(isComplete);
     }
     @ApiOperation("여행 게시물 정보 가져오는 기능")
-    @GetMapping("/user/plan/post/{postId}")
+    @GetMapping("/plan/post/{postId}")
     public ResponseEntity<PostResponseDto> readPostInfo(@PathVariable Long postId){
         return postService.readPostInfo(postId);
     }

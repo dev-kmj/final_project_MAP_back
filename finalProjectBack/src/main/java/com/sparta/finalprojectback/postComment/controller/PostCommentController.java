@@ -24,7 +24,7 @@ public class PostCommentController {
         return postCommentService.createPostComment(member, requestDto, postId);
     }
     @ApiOperation("게시물 댓글 불러오는 기능")
-    @GetMapping("/user/plan/post/{postId}/comment")
+    @GetMapping("/plan/post/{postId}/comment")
     public ResponseEntity<List<PostCommentResponseDto>> readPostComment(@AuthenticationPrincipal Member member, @PathVariable Long postId){
         return postCommentService.readMyPostComment(member, postId);
     }

@@ -22,7 +22,7 @@ public class ScheduleController {
         return scheduleService.createSchedule(requestDto);
     }
     @ApiOperation("일정 조회 기능")
-    @GetMapping("user/plan/post/{postId}/schedules")
+    @GetMapping("plan/post/{postId}/schedules")
     ResponseEntity<List<ScheduleResponseDto>> readSchedule(@PathVariable Long postId){
         return scheduleService.readSchedule(postId);
     }
