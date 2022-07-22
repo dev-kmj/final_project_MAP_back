@@ -24,13 +24,11 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
-
 
     public Likes(Member member, Post post) {
         this.member = member;
         this.post = post;
     }
-
 }
