@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
-//    private final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
+    private final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
     private final ScheduleRepository scheduleRepository;
     private final PostRepository postRepository;
     @Override
@@ -73,7 +73,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ResponseEntity<String> deleteSchedule(Long scheduleId) {
         scheduleRepository.deleteById(scheduleId);
-//        logger.info("deleteScheduleId : {}", scheduleId);
+        logger.info("deleteScheduleId : {}", scheduleId);
         return new ResponseEntity<>(ResponseMessage.DELETE_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -81,7 +81,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Transactional
     public ResponseEntity<String> deleteAllSchedule(Long postId) {
         scheduleRepository.deleteAllByPost_Id(postId);
-//        logger.info("deleteAllScheduleId : {}", postId);
+        logger.info("deleteAllScheduleId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.DELETE_ALL_SCHEDULE, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -117,7 +117,7 @@ public class ScheduleServiceImpl implements ScheduleService {
                     .likes(post.getLikes())
                     .build());
         }
-//        logger.info("readSearchPost : {}",local);
+        logger.info("readSearchPost : {}",local);
         return responseDtoList;
     }
 }
