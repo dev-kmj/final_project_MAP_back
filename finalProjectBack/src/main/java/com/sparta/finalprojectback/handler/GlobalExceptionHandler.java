@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-//    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     @ExceptionHandler(value = Exception.class)
     public String handleException(Exception e){
-//        logger.error("error", e);
+        logger.error("error", e);
         return e.getMessage();
     }
 
