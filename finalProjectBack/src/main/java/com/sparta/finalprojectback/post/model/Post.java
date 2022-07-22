@@ -50,7 +50,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
             mappedBy = "post",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private List<Likes> likesList;
 
 

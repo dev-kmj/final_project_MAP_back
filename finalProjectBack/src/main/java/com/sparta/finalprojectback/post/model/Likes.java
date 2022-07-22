@@ -24,7 +24,7 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
     public Likes(Member member, Post post) {
