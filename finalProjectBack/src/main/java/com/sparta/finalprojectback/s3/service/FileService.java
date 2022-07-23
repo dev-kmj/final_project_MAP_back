@@ -77,12 +77,6 @@ public class FileService {
         return postId;
     }
 
-    public Long deleteImage(Member member){
-
-        s3Service.deleteFile(member.getImage());
-        return member.getId();
-    }
-
     // 파일 읽어오기
     public String importImage(Long postId){
         Post post = postRepository.findById(postId).orElseThrow(

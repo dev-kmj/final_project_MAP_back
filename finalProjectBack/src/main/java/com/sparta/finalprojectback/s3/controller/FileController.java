@@ -27,7 +27,7 @@ public class FileController {
     @ApiOperation("프로필 이미지 생성 기능")
     @PostMapping("user/profile")
     public String uploadProfile(@RequestPart MultipartFile file, @AuthenticationPrincipal Member member) {
-//        fileService.deleteImage(member);
+        
         logger.info("uploadProfileMemberId : {}", member.getId());
         return fileService.uploadImage(file, member, "profile");
     }
