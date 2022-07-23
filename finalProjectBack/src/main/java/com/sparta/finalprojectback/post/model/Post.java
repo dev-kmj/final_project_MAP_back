@@ -55,21 +55,21 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
 
 
     // 댓글 매핑
-//    @OneToMany(
-//            mappedBy = "post",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true,
-//            fetch = FetchType.LAZY)
-//    private List<PostComment> postComments;
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<PostComment> postComments;
 
 
     // 스케줄 매핑
-//    @OneToMany(
-//            mappedBy = "post",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true,
-//            fetch = FetchType.LAZY)
-//    private List<Schedule> schedules;
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Schedule> schedules;
 
 
     public void updatePost(String title, Category category, int period, boolean isComplete) {

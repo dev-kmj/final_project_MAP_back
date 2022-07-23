@@ -27,7 +27,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService{
-//    private final Logger logger = LoggerFactory.getLogger(PostController.class);
+    private final Logger logger = LoggerFactory.getLogger(PostController.class);
     private final PostRepository postRepository;
     private final ScheduleRepository scheduleRepository;
     private final FileService fileService;
@@ -46,7 +46,7 @@ public class PostServiceImpl implements PostService{
                 .member(member)
                 .views(0)
                 .build()).getId();
-//        logger.info("createPostMemberId : {}",member.getId());
+        logger.info("createPostMemberId : {}",member.getId());
         return new ResponseEntity<>(createdPostId, HttpStatus.valueOf(StatusCode.CREATED));
     }
 
@@ -65,8 +65,8 @@ public class PostServiceImpl implements PostService{
         postCommentRepository.deleteAllByPost_Id(postId);
         fileService.deleteImage(postId);
         postRepository.deleteById(postId);
-//        logger.info("deletePostMemberId : {}",member.getId());
-//        logger.info("deletePostId : {}", postId);
+        logger.info("deletePostMemberId : {}",member.getId());
+        logger.info("deletePostId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.DELETE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 
@@ -121,8 +121,8 @@ public class PostServiceImpl implements PostService{
         }
         System.out.println(category);
         targetPost.updatePost(requestDto.getTitle(), category, requestDto.getPeriod(), true);
-//        logger.info("updatePostMemberId : {}", member.getId());
-//        logger.info("updatePostId : {}", postId);
+        logger.info("updatePostMemberId : {}", member.getId());
+        logger.info("updatePostId : {}", postId);
         return new ResponseEntity<>(ResponseMessage.UPDATE_POST, HttpStatus.valueOf(StatusCode.OK));
     }
 

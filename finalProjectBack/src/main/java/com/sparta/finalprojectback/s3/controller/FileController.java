@@ -15,18 +15,23 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 @RestController
 public class FileController {
-//    private final Logger logger = LoggerFactory.getLogger(FileController.class);
+    private final Logger logger = LoggerFactory.getLogger(FileController.class);
     private final FileService fileService;
     @ApiOperation("게시물 이미지 생성 기능")
     @PostMapping("user/plan/post/{postId}/image")
     public String uploadImage(@RequestPart MultipartFile file, @PathVariable Long postId,  @RequestParam String path) {
         fileService.deleteImage(postId);
-//        logger.info("uploadImagePostId : {}", postId);
+        logger.info("uploadImagePostId : {}", postId);
         return fileService.uploadImage(file, postId, path);
     }
     @ApiOperation("프로필 이미지 생성 기능")
     @PostMapping("user/profile")
     public String uploadProfile(@RequestPart MultipartFile file, @AuthenticationPrincipal Member member) {
+<<<<<<< HEAD
+=======
+        fileService.deleteImage(member);
+        logger.info("uploadProfileMemberId : {}", member.getId());
+>>>>>>> 4973c4b1278ade2ead5456620658846ca72297d3
         return fileService.uploadImage(file, member, "profile");
     }
     @ApiOperation("이미지 불러오는 기능")
@@ -37,7 +42,7 @@ public class FileController {
     @ApiOperation("이미지 삭제 기능")
     @DeleteMapping("user/plan/post/{postId}/image")
     public Long deleteImage(@PathVariable Long postId){
-//        logger.info("deleteImageId : {}", postId);
+        logger.info("deleteImageId : {}", postId);
         return fileService.deleteImage(postId);
     }
 }

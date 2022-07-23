@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CommunityService {
-//    private final Logger logger = LoggerFactory.getLogger(CommunityController.class);
+    private final Logger logger = LoggerFactory.getLogger(CommunityController.class);
     private final CommunityRepository communityRepository;
 
     /**
@@ -36,7 +36,7 @@ public class CommunityService {
     @Transactional
     public Long createCommunity(CommunityRequestDto requestDto, Member member) {
         Community community = new Community(requestDto, member);
-//        logger.info("createCommunityMemberId : {}",member.getId());
+        logger.info("createCommunityMemberId : {}",member.getId());
         return communityRepository.save(community).getId();
     }
 
@@ -65,7 +65,7 @@ public class CommunityService {
 
     // 나의 게시물 리스트 조회
     public List<CommunityResponseDto> getMyCommunityList(Member member) {
-//        logger.info("getMyCommunityListMemberId : {}",member.getId());
+        logger.info("getMyCommunityListMemberId : {}",member.getId());
        return communityRepository.findAllByMemberId(member.getId()).stream()
                 .map(CommunityResponseDto::new)
                 .collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class CommunityService {
         );
 
         CommunityResponseDto communityResponseDto = communityRepository.findById(id).map(CommunityResponseDto::new).get();
-//        logger.info("communityDetailId : {}",id);
+        logger.info("communityDetailId : {}",id);
         return communityResponseDto;
     }
 
@@ -90,8 +90,8 @@ public class CommunityService {
                 () -> new IllegalArgumentException("해당하는 게시물이 존재하지 않습니다.")
         );
         community.updateCommunity(id, requestDto, member);
-//        logger.info("updateCommunityMemberId : {}",member.getId());
-//        logger.info("updateCommunityId : {}",id);
+        logger.info("updateCommunityMemberId : {}",member.getId());
+        logger.info("updateCommunityId : {}",id);
         communityRepository.save(community);
     }
 
@@ -100,8 +100,8 @@ public class CommunityService {
     public void deleteCommunity(Long id, Member member) {
        communityRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당하는 게시물이 없습니다."));
-//       logger.info("deleteCommunityMemberId : {}",member.getId());
-//       logger.info("deleteCommunityId: {} ",id);
+       logger.info("deleteCommunityMemberId : {}",member.getId());
+       logger.info("deleteCommunityId: {} ",id);
         communityRepository.deleteCommunityByIdAndMember(id, member);
     }
 }
