@@ -6,6 +6,5 @@ public enum Category {
     SCENERY, //풍경
     CAFE, //카페투어
     ATTRACTION, //관광지
-
     DATE // 데이트
 }
