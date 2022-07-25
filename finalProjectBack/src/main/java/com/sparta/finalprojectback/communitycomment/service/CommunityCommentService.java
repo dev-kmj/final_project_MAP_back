@@ -58,7 +58,7 @@ public class CommunityCommentService {
         for (CommunityComment communityComment : communityCommentList) {
             communityCommentResponseDtoList.add(new CommunityCommentResponseDto(communityComment.getId(),
                     communityComment.getComment(), communityComment.getMember().getNickname(),
-                    communityComment.getCreatedAt()));
+                    communityComment.getCreatedAt(), communityComment.getMember().getImage()));
         }
         return communityCommentResponseDtoList;
     }

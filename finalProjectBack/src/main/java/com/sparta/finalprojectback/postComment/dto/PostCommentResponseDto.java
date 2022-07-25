@@ -28,6 +28,8 @@ public class PostCommentResponseDto extends Timestamped {
     @Column(length = 200)
     private String comment;
     private String member;
+
+    private String img;
     private Long post;
     @Builder
     public PostCommentResponseDto(LocalDateTime createdAt, LocalDateTime modifiedAt, Long id, String comment,Member member,Post post){
@@ -37,5 +39,6 @@ public class PostCommentResponseDto extends Timestamped {
         this.comment = comment;
         this.member = member.getNickname();
         this.post = post.getId();
+        this.img = member.getImage();
     }
 }

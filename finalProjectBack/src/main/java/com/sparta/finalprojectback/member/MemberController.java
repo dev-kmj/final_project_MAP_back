@@ -52,7 +52,7 @@ public class MemberController {
         result.put("result", "admin ok");
         return result;
     }
-    @ApiOperation("유저 정보 가져오는 기능")
+    @ApiOperation("나의 정보 가져오는 기능")
     @GetMapping("user")
     public MemberResponseDto myInfo(@AuthenticationPrincipal Member member){
         return memberService.myInfo(member);

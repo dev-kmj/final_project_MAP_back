@@ -20,15 +20,18 @@ public class CommunityCommentResponseDto extends Timestamped {
     // 댓글 작성자
     private String nickname;
 
+    private String img;
+
     // 댓글 작성시각
 
     @CreatedDate
     private LocalDateTime createdAt;
 
-    public CommunityCommentResponseDto(Long commentId, String comment, String nickname, LocalDateTime createdAt) {
+    public CommunityCommentResponseDto(Long commentId, String comment, String nickname, LocalDateTime createdAt, String img) {
         this.commentId = commentId;
         this.comment = comment;
         this.nickname = nickname;
         this.createdAt = createdAt;
+        this.img = img;
     }
 }
