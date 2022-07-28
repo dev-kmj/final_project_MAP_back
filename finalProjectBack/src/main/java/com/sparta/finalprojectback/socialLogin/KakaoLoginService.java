@@ -1,15 +1,11 @@
-package com.sparta.finalprojectback.kakao;
+package com.sparta.finalprojectback.socialLogin;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
-import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.MemberRepository;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.util.Collections;

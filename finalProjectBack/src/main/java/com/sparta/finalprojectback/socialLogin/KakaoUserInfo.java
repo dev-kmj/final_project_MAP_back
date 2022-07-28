@@ -1,4 +1,4 @@
-package com.sparta.finalprojectback.kakao;
+package com.sparta.finalprojectback.socialLogin;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

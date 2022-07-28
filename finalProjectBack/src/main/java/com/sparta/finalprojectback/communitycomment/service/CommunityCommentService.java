@@ -1,6 +1,5 @@
 package com.sparta.finalprojectback.communitycomment.service;
 
-import com.sparta.finalprojectback.community.controller.CommunityController;
 import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.community.repository.CommunityRepository;
 import com.sparta.finalprojectback.communitycomment.controller.CommunityCommentController;
@@ -8,7 +7,7 @@ import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestD
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentResponseDto;
 import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
 import com.sparta.finalprojectback.communitycomment.repository.CommunityCommentRepository;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

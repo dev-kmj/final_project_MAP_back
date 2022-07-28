@@ -1,8 +1,8 @@
 package com.sparta.finalprojectback.s3.service;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.MemberRepository;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.repository.MemberRepository;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;

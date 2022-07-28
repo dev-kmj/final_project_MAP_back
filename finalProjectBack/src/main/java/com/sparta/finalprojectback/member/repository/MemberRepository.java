@@ -1,5 +1,6 @@
-package com.sparta.finalprojectback.member;
+package com.sparta.finalprojectback.member.repository;
 
+import com.sparta.finalprojectback.member.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -3,7 +3,7 @@ package com.sparta.finalprojectback.communitycomment.controller;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestDto;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentResponseDto;
 import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import io.swagger.annotations.Api;

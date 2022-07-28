@@ -1,4 +1,4 @@
-package com.sparta.finalprojectback.member;
+package com.sparta.finalprojectback.member.dto;
 
 import lombok.*;
 

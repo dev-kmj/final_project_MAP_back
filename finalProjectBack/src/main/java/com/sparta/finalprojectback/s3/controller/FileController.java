@@ -1,6 +1,6 @@
 package com.sparta.finalprojectback.s3.controller;
 
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.s3.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

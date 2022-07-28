@@ -1,6 +1,6 @@
 package com.sparta.finalprojectback.postComment.service;
 
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
 import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
 import org.springframework.http.ResponseEntity;

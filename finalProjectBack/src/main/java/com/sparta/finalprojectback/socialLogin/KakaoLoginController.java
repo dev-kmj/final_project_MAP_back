@@ -1,12 +1,10 @@
-package com.sparta.finalprojectback.kakao;
+package com.sparta.finalprojectback.socialLogin;
 
-import com.sparta.finalprojectback.communitycomment.controller.CommunityCommentController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "카카오 기능")

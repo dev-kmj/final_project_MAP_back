@@ -1,6 +1,5 @@
-package com.sparta.finalprojectback.kakao;
+package com.sparta.finalprojectback.socialLogin;
 
-import com.google.gson.JsonElement;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -11,12 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonElement;
-
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 @Service
 public class KakaoOAuth {

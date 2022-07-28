@@ -4,7 +4,7 @@ import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.service.CommunityService;
 import com.sparta.finalprojectback.communitycomment.service.CommunityCommentService;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import io.swagger.annotations.Api;

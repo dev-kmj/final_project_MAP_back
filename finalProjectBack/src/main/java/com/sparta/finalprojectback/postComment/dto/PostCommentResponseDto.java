@@ -1,7 +1,7 @@
 package com.sparta.finalprojectback.postComment.dto;
 
-import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.Timestamped;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.model.Timestamped;
 import com.sparta.finalprojectback.post.model.Post;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import java.time.LocalDateTime;

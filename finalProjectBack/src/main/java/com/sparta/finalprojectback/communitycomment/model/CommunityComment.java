@@ -2,8 +2,8 @@ package com.sparta.finalprojectback.communitycomment.model;
 
 import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.communitycomment.dto.CommunityCommentRequestDto;
-import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.Timestamped;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.model.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

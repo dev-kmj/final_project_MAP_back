@@ -1,10 +1,9 @@
 package com.sparta.finalprojectback.postComment.service;
 
-import com.sparta.finalprojectback.post.controller.PostController;
 import com.sparta.finalprojectback.postComment.controller.PostCommentController;
 import com.sparta.finalprojectback.postComment.model.PostComment;
 import com.sparta.finalprojectback.postComment.repository.PostCommentRepository;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.post.model.Post;
 import com.sparta.finalprojectback.post.repository.PostRepository;
 import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;

@@ -1,6 +1,6 @@
 package com.sparta.finalprojectback.post.service;
 
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import com.sparta.finalprojectback.post.controller.LikeController;
 import com.sparta.finalprojectback.post.dto.LikeResponseDto;
 import com.sparta.finalprojectback.post.model.Likes;

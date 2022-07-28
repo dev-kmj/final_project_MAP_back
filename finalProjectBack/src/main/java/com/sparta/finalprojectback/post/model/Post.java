@@ -1,7 +1,7 @@
 package com.sparta.finalprojectback.post.model;
 
-import com.sparta.finalprojectback.member.Member;
-import com.sparta.finalprojectback.member.Timestamped;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.model.Timestamped;
 import com.sparta.finalprojectback.postComment.model.PostComment;
 import com.sparta.finalprojectback.schedule.model.Schedule;
 import lombok.*;

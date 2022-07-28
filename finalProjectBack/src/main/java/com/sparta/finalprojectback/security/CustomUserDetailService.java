@@ -1,6 +1,6 @@
 package com.sparta.finalprojectback.security;
 
-import com.sparta.finalprojectback.member.MemberRepository;
+import com.sparta.finalprojectback.member.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

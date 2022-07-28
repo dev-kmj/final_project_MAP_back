@@ -1,6 +1,13 @@
-package com.sparta.finalprojectback.member;
+package com.sparta.finalprojectback.member.service;
 
 import com.sparta.finalprojectback.jwt.JwtTokenProvider;
+import com.sparta.finalprojectback.member.dto.MemberUpdateRequestDto;
+import com.sparta.finalprojectback.member.controller.MemberController;
+import com.sparta.finalprojectback.member.dto.MemberJoinRequestDto;
+import com.sparta.finalprojectback.member.dto.MemberLoginRequestDto;
+import com.sparta.finalprojectback.member.dto.MemberResponseDto;
+import com.sparta.finalprojectback.member.model.Member;
+import com.sparta.finalprojectback.member.repository.MemberRepository;
 import com.sparta.finalprojectback.statuscode.ResponseMessage;
 import com.sparta.finalprojectback.statuscode.StatusCode;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +26,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     private final Logger logger = LoggerFactory.getLogger(MemberController.class);
     private final PasswordEncoder passwordEncoder;

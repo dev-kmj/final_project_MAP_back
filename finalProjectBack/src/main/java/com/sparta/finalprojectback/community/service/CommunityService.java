@@ -5,7 +5,7 @@ import com.sparta.finalprojectback.community.dto.CommunityRequestDto;
 import com.sparta.finalprojectback.community.dto.CommunityResponseDto;
 import com.sparta.finalprojectback.community.model.Community;
 import com.sparta.finalprojectback.community.repository.CommunityRepository;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

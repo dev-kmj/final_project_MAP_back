@@ -1,8 +1,7 @@
-package com.sparta.finalprojectback.member;
+package com.sparta.finalprojectback.member.model;
 
-import com.sparta.finalprojectback.post.model.Category;
+import com.sparta.finalprojectback.member.dto.MemberUpdateRequestDto;
 import com.sparta.finalprojectback.post.model.Likes;
-import com.sparta.finalprojectback.post.model.Post;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

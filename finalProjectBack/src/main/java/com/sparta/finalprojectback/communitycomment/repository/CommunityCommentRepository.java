@@ -1,7 +1,7 @@
 package com.sparta.finalprojectback.communitycomment.repository;
 
 import com.sparta.finalprojectback.communitycomment.model.CommunityComment;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

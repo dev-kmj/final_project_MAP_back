@@ -3,7 +3,7 @@ package com.sparta.finalprojectback.postComment.controller;
 import com.sparta.finalprojectback.postComment.dto.PostCommentRequestDto;
 import com.sparta.finalprojectback.postComment.dto.PostCommentResponseDto;
 import com.sparta.finalprojectback.postComment.service.PostCommentService;
-import com.sparta.finalprojectback.member.Member;
+import com.sparta.finalprojectback.member.model.Member;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
