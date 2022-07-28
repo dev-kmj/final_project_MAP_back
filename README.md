@@ -1,7 +1,7 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/74237301/181427274-bf218aa5-c343-49e0-a3c3-61c106ed0b16.png" width="410px" height="390px">
 
-# **여행계획 사이트 - MAP 🗺️**\
+# **여행계획 사이트 - MAP 🗺️**
 
 * * *
 > 💡
