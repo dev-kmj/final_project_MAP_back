@@ -4,19 +4,19 @@
 # **여행계획 사이트 - MAP 🗺️**
 
 * * *
+
 > 💡
 *"다른 사람들은 어디가지?"*  궁금해 하는 사람들을 위한 여행계획 서비스 **MAP(Make A Plan)** 입니다.
  
 
 
-
+<br></br>
 ## 🧑‍💻팀원 소개 
 
 | [이광민](https://github.com/leawvc) | [강문정](https://github.com/dev-kmj) | [윤상진](https://github.com/tkdwls4453) |
 | :---: | :---: | :---: | 
 | <img src="https://user-images.githubusercontent.com/74237301/181447155-f76af3e4-2177-4bba-9276-10ded4eb5385.gif" width="150" height="150"> | <img src="https://avatars.githubusercontent.com/u/74237301?v=4" width="150" height="150"> | <img src="https://user-images.githubusercontent.com/74237301/181447271-7690456e-a29b-4d01-92ac-d04efdb81367.png" width="150" height="150"> |
 | 팀장, 개발자 | 개발자 | 개발자 | 
-
 
 ---
 
@@ -43,6 +43,7 @@ MAP(make a plan)은 이름에서도 알 수 있듯이 내가 세운 계획을 �
 > 커뮤니티 게시물 CRUD<br>
 > 마이페이지
 
+<br></br>
 ### 데모 화면
 | **인트로 페이지** | **로그인** |  
 | :---: | :---: |
@@ -62,7 +63,7 @@ MAP(make a plan)은 이름에서도 알 수 있듯이 내가 세운 계획을 �
 
 
 
-
+<br></br>
 ## 💻 개발 언어 및 활용 기술
 
 ### 개발 환경 
