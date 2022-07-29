@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 public class KakaoLoginController {
-//    test
+
     private final Logger logger = LoggerFactory.getLogger(KakaoLoginController.class);
     private final KakaoLoginService kakaoLoginService;
     @ApiOperation("카카오 로그인")

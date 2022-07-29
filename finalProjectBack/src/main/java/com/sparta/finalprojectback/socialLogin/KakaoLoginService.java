@@ -49,7 +49,7 @@ public class KakaoLoginService {
         }
         jwt = jwtTokenProvider.createToken(savedMember.getUsername(),
                 savedMember.getRoles());
-        System.out.println(jwt);
+
         return jwt;
     }
 }

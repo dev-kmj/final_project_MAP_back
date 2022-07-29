@@ -27,7 +27,6 @@ public class KakaoOAuth {
         // 2. 액세스 토큰 -> 카카오 사용자 정보
         KakaoUserInfo userInfo = getUserInfoByToken(accessToken);
 
-        System.out.println("사용자정보 : " + userInfo.getNickname());
         return userInfo;
     }
 
@@ -40,7 +39,6 @@ public class KakaoOAuth {
         // HttpBody 오브젝트 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-//        params.add("client_id", "1d59051c119b29f730158f41bc9c5153");
         params.add("client_id", kakao_apikey);
         params.add("redirect_uri", redirect_url);
         params.add("code", authorizedCode);
@@ -62,7 +60,7 @@ public class KakaoOAuth {
         String tokenJson = response.getBody();
         org.json.JSONObject rjson = new JSONObject(tokenJson);
         String accessToken = rjson.getString("access_token");
-        System.out.println("accessToken: " + accessToken);
+
         return accessToken;
     }
 
@@ -88,8 +86,6 @@ public class KakaoOAuth {
         org.json.JSONObject body = new org.json.JSONObject(response.getBody());
         Long kakaoId = body.getLong("id");
 
-        // 이메일 -> 예외처리
-//        String email = body.getJSONObject("kakao_account").getString("email");
         String email = "kakao";
         String nickname = body.getJSONObject("properties").getString("nickname");
 
